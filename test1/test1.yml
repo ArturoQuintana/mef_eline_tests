@@ -1,5 +1,5 @@
 ---
-- name: Start Test 1 in CentoOS 7
+- name: Start Test 1
   hosts: all
   remote_user: amlight
 
