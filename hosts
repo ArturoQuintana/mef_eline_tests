@@ -32,5 +32,6 @@ inet=2
 inet=3
 
 
-
+[defaults]
+privatekeyfile = /Users/amlight/.ssh/private_key
 
