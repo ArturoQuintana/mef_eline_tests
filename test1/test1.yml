@@ -1,0 +1,46 @@
+---
+- name: Start Test 1 in CentoOS 7
+  hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Ping the server
+      action: ping
+
+    - name: Install Python
+      raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || (yum -y install python libselinux-python)
+
+    - name: Create and Activate Vlan
+      shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" type vlan id "{{ item|int }}"
+      with_sequence: start="{{ start }}" end="{{ end }}"
+
+    - name: Setting Vlan
+      command: ip addr add 10.0."{{ item|int }}"."{{ inet }}"/24 brd 10.0."{{ item|int }}".255 dev "{{ net }}.{{ item|int }}"
+      with_sequence: start="{{ start }}" end="{{ end }}"
+
+    - name: Activating Vlan
+      shell: ip link set dev "{{ net }}.{{ item|int }}" up
+      with_sequence: start="{{ start }}" end="{{ end }}"
+
+    - name: Copy Test 1 Scrip
+      copy: src=/usr/local/src/request_test1.py dest=/usr/local/src  owner=root mode=755
+
+    - name: Install requests module
+      command: pip install requests
+
+    - name: Running Test 1 Script
+      command: python3 /usr/local/src/request_test1.py "{{ item }}"
+      with_sequence: start="{{ start}}" end="{{ end }}"
+
+
+
+
+#################### Removing Test ###################
+
+    - name: Deactivate Vlan
+      command: ip link set dev "{{ net }}"."{{ item|int }}" down
+      with_sequence: start="{{ start }}" end="{{ end }}"
+
+    - name: Remove Vlan
+      command: ip link delete "{{ net }}"."{{ item|int}}"
+      with_sequence: start="{{ start }}" end="{{ end }}"
