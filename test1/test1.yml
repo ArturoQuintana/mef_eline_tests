@@ -1,7 +1,7 @@
 ---
 - name: Start Test 1 in CentoOS 7
   hosts: all
-  remote_user: root
+  remote_user: amlight
 
   tasks:
     - name: Ping the server
