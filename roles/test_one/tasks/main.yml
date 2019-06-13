@@ -2,7 +2,7 @@
 - name: Copy Test 1 Scrip
   file:
     src: "{{ role_path }}/files/evc_request.py"
-    dest: /path/to/symlink
+    dest: /tmp/symlink
     owner: root
     group: root
     state: link
