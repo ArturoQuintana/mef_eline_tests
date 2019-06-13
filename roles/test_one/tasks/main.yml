@@ -4,6 +4,10 @@
     src: "{{ role_path }}/files/evc_request.py"
     dest: /tmp/evc_request.py
 
+- name: Activate Python 3.6 SCL Bash
+  command: scl enable rh-python36 bash
+  when: ansible_distribution == 'CentOS'
+
 - name: Running Test 1 Script
   command: python3 /tmp/evc_request.py "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"
