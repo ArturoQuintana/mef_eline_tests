@@ -1,10 +1,9 @@
 ## Main Ansible playbook that will call all the tests
 ---
-- name: Install Dependencies
-  hosts: localhost
-
-  roles:
-    - python
+#- name: Install Dependencies
+#  hosts: localhost
+#  roles:
+#    - python
 
 
 - name: Mef_eLine Tests
