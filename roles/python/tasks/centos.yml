@@ -2,4 +2,12 @@
 - name: Install Python in CentOS 7
   yum:
     name: "python"
-    state: present
+    state: latest
+
+- name: Install install Python 3.6 SCL
+  yum:
+    name: "rh-python36"
+    state: latest
+
+- name: Activate Python 3.6 SCL Bash
+  command: scl enable rh-python36 bash
