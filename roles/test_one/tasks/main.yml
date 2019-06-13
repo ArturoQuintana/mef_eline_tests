@@ -1,0 +1,4 @@
+- name: Copy Test 1 Script
+  copy:
+    src: "{{ role_path }}/files/ping.py"
+    dest: /tmp/evc_request.py

@@ -4,6 +4,6 @@
     name: "requests"
     execute: pip3
 
-- name: Running Test 1 Script
+- name: Running Create EVC Script
   command: python3 /tmp/evc_request.py "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"

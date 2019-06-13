@@ -1,0 +1,15 @@
+---
+- name: Installing requests module
+  command: /opt/rh/rh-python36/root/usr/bin/pip3 install pythonping
+
+- name: Running Test 1 Script
+  tasks:
+    - name: Running Script on 10.0."{{ item|int }}"."{{ inet }}"/24
+      command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/ping.py 10.0."{{ item|int }}"."{{ inet }}"/24 4 time
+      register: output
+
+    - name: Print output Ping for 10.0."{{ item|int }}"."{{ inet }}"/24
+      debug:
+        var: output.stdout_lines
+
+  with_sequence: start="{{ start}}" end="{{ end }}"

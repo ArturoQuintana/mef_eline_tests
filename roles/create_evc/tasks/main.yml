@@ -1,5 +1,5 @@
 ---
-- name: Copy Test 1 Scrip
+- name: Copy EVC Scrip
   copy:
     src: "{{ role_path }}/files/evc_request.py"
     dest: /tmp/evc_request.py
