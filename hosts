@@ -16,24 +16,25 @@ int_two
 int_three
 
 [all:vars]
-start=20
-end=22
-net=enp6s0
-ansible_user=amlight
-ansible_password=wham0Path
-ansible_become=yes
-ansible_become_user=root
-ansible_become_password=wham0Path
-ansible_port=2712
+start = 20
+end = 22
+net = enp6s0
+ansible_user = amlight
+ansible_password = wham0Path
+become_exe = sudo
+#ansible_become=yes
+#ansible_become_user=root
+#ansible_become_password=wham0Path
+ansible_port = 2712
 
 
 [int_one:vars]
-inet=1
+inet = 1
 
 [int_two:vars]
-inet=2
+inet = 2
 
 [int_three:vars]
-inet=3
+inet = 3
 
 
