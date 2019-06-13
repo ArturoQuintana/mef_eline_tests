@@ -12,7 +12,7 @@
   command: python3 /tmp/evc_request.py "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"
 
-- name: Delete Test 1 Scrip
-  file:
-    path: /tmp/evc_request.py
-    state: absent
+#- name: Delete Test 1 Scrip
+#  file:
+#    path: /tmp/evc_request.py
+#    state: absent

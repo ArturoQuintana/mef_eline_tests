@@ -10,3 +10,8 @@
 - name: Remove Vlan
   command: ip link delete "{{ net }}"."{{ item|int}}"
   with_sequence: start="{{ start }}" end="{{ end }}"
+
+- name: Delete Test 1 Scrip
+  file:
+    path: /tmp/evc_request.py
+    state: absent
