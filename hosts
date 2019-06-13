@@ -33,7 +33,7 @@ ansible_port = 22
 net = eth0
 
 [ubuntu:vars]
-net = enp5s0
+net = enp0s5
 
 [int_one:vars]
 inet = 1
