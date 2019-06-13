@@ -11,8 +11,9 @@
       raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || (yum -y install python libselinux-python)
 
     - name: Install requests module
-      command: pip3 install requests
-
+      pip:
+        name: requests
+        executable: pip-3
 
     - name: Create and Activate Vlan
       shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" type vlan id "{{ item|int }}"
