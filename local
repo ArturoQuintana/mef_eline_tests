@@ -5,9 +5,16 @@
 
   tasks:
     - name: Install SSHPASS
-      pip:
+      yum:
+        name: http://mirror.centos.org/centos/7/extras/x86_64/Packages/sshpass-1.06-2.el7.x86_64.rpm
+        state: present
+      when: ansible_distribution == 'CentOS'
+
+    - name: Install SSHPASS
+      apt:
         name: sshpass
-        executable: pip3
+        state: present
+      when: ansible_distribution == 'Ubuntu'
 
 #    - name: Generate KEY
 #      raw: ssh-keygen
