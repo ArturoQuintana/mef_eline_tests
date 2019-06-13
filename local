@@ -4,13 +4,13 @@
   hosts: localhost
 
   tasks:
-    - name: Install SSHPASS
+    - name: Install SSHPASS on CentOS
       yum:
         name: http://mirror.centos.org/centos/7/extras/x86_64/Packages/sshpass-1.06-2.el7.x86_64.rpm
         state: present
       when: ansible_distribution == 'CentOS'
 
-    - name: Install SSHPASS
+    - name: Install SSHPASS on Ubuntu
       apt:
         name: sshpass
         state: present
@@ -31,3 +31,15 @@
 
     - name: Run the Roles
       command: ansible-playbook -i hosts tests.yml
+
+    - name: Delete SSHPASS on CentOS
+      yum:
+        name: http://mirror.centos.org/centos/7/extras/x86_64/Packages/sshpass-1.06-2.el7.x86_64.rpm
+        state: present
+      when: ansible_distribution == 'CentOS'
+
+    - name: Delete SSHPASS on Ubuntu
+      apt:
+        name: sshpass
+        state: present
+      when: ansible_distribution == 'Ubuntu'
