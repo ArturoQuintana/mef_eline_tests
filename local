@@ -7,7 +7,7 @@
 
 
 - name: Mef_eLine Tests
-  hosts: localhost
+  hosts: all
 
   tasks:
     - name: Install SSHPASS on CentOS

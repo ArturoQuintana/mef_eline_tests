@@ -2,15 +2,8 @@
 127.0.0.1
 
 [localhost:vars]
-host1=67.17.206.211
-#host1=10.211.55.39
-host2=67.17.206.212
-#host2=10.211.55.40
-host3=67.17.206.218
-#host3=10.211.55.36
-port=2712
-user=amlight
-ansible_password=wham0Path
+user=roicxy
+ansible_password=alonso82
 ansible_become=yes
 ansible_become_user=root
-ansible_become_password=wham0Path
+ansible_become_password=alonso82
