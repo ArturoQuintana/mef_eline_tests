@@ -1,0 +1,6 @@
+---
+dependencies:
+  - role: python
+  - role: create_vlan
+  - role: test_one
+  - role: delete_vlan

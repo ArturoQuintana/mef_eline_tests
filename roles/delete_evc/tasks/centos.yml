@@ -1,0 +1,4 @@
+---
+- name: Deleting EVCs
+  command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py "{{ item }}" delete_evc
+  with_sequence: start="{{ start}}" end="{{ end }}"
