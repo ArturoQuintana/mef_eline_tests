@@ -1,3 +1,7 @@
 ---
-- name: Installing Python
-  raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || ( yum install centos-release-scl && yum install rh-python36)
+#- name: Installing Python
+#  raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || ( yum install centos-release-scl && yum install rh-python36)
+- import_tasks: centos.yml
+  when: ansible_facts['os_family']|lower == 'centos'
+- import_tasks: ubuntu.yml.yml
+  when: ansible_facts['os_family']|lower == 'ubuntu'

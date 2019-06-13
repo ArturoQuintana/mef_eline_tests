@@ -1,0 +1,5 @@
+---
+- name: Install Python in Ubuntu
+  apt:
+    name: "python"
+    state: present
