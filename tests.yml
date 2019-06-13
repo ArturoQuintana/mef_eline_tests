@@ -3,17 +3,17 @@
 - name: Test Connection to Hosts
   hosts: all
   tasks:
-    - name: Generate KEY
-      openssh_keypair:
-        path: /tmp/id_ssh_rsa
-        force: True
-
-    - name: Add KEY to Hosts
-      authorized_key:
-#        user: ansible_user
-        state: present
-        key: "{{ lookup('file', 'id_rsa.pub') }}"
-        path: /tmp/id_ssh_rsa
+#    - name: Generate KEY
+#      openssh_keypair:
+#        path: /tmp/id_ssh_rsa
+#        force: True
+#
+#    - name: Add KEY to Hosts
+#      authorized_key:
+##        user: ansible_user
+#        state: present
+#        key: "{{ lookup('file', 'id_rsa.pub') }}"
+#        path: /tmp/id_ssh_rsa
 
     - ping:
 
