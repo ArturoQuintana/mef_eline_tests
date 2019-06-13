@@ -3,6 +3,15 @@
 - name: Test Connection to Hosts
   hosts: all
   tasks:
+    - name: Generate KEY
+      openssh_keypair:
+        path: /root/
+        force: True
+    - name: ADD KEY to Hosts
+      authorized_key:
+      state: present
+      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+
     - ping:
 
 - name: Mef_eLine Tests
