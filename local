@@ -5,12 +5,10 @@
 
   tasks:
     - name: Generate KEY
-      openssh_keypair:
-        path: /tmp/id_ssh_rsa
-        force: True
+      raw: ssh-keygen
 
     - name: Copy KEY to HOST 1
-      raw: ssh-copy-id -i /root/tmp/id_ssh_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
+      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
 
     - name: Copy KEY to HOST 2
       raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
