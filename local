@@ -7,13 +7,23 @@
   tasks:
 
     - name: Copy SSH KEY to Host1
-      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host1}}"
+      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host1}}" -p  2712
 
     - name: Copy SSH KEY to Host2
-      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host2}}"
+      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host2}}" -p  2712
 
     - name: Copy SSH KEY to Host3
-      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host3}}"
+      command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host3}}" -p  2712
+
+    - name: Ping Host1
+      command: ansible -m ping "{{host1}}"
+
+    - name: Ping Host2
+      command: ansible -m ping "{{host2}}"
+
+    - name: Ping Host3
+      command: ansible -m ping "{{host3}}"
+
 
     - name: Run Test1
       command: ansible-playbook -i hosts test1/test1.yml --ask-pass
