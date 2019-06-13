@@ -7,5 +7,6 @@
     - create_vlan
     - test_one
     - delete_vlan
+    - delete_evc
 
 
