@@ -22,6 +22,9 @@ int_three
 start=20
 end=22
 net=enp6s0
+ansible_user=roicxy
+ansible_password=alonso82
+ansible_become=yes
 
 
 [int_one:vars]
