@@ -4,5 +4,5 @@
     path: /tmp/"{{ item }}"
     state: absent
   loop:
-    - evc_request.py
-    - ping.py
+    - "evc_request.py"
+    - "ping.py"
