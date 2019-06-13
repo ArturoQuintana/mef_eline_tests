@@ -13,7 +13,7 @@
     - name: Install requests module
       pip:
         name: requests
-        executable: pip3
+        # executable: pip3
 
     - name: Create and Activate Vlan
       shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" type vlan id "{{ item|int }}"
