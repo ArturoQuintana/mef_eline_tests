@@ -1,9 +1,10 @@
+
 [localhost]
 127.0.0.1
-
-[localhost:vars]
-user=roicxy
-ansible_password=alonso82
-ansible_become=yes
-ansible_become_user=root
-ansible_become_password=alonso82
+;
+;[localhost:vars]
+;user=roicxy
+;ansible_password=alonso82
+;ansible_become=yes
+;ansible_become_user=root
+;ansible_become_password=alonso82
