@@ -1,5 +1,9 @@
 ## Main Ansible playbook that will call all Roles
 ---
+- name: Test Connection to Hosts
+  hosts: all
+  ping:
+
 - name: Mef_eLine Tests
   hosts: all
   roles:
