@@ -1,6 +1,8 @@
 ---
 - name: Copy Test 1 Scrip
-  copy: src=files/evc_request.py dest=/tmp/  owner=root mode=755
+  copy:
+    src: "{{ role_path }}/files/evc_request.py"
+    dest: /tmp/evc_request.py
 
 - name: Running Test 1 Script
   command: python3 /tmp/evc_request.py "{{ item }}" create_evc
