@@ -1,15 +1,15 @@
 
 [int_one]
-#67.17.206.211
-10.211.55.39
+67.17.206.211
+#10.211.55.39
 
 [int_two]
-#67.17.206.212
-10.211.55.40
+67.17.206.212
+#10.211.55.40
 
 [int_three]
-#67.17.206.218
-10.211.55.36
+67.17.206.218
+#10.211.55.36
 
 [centos:children]
 int_one
@@ -21,38 +21,22 @@ int_three
 [all:vars]
 start=20
 end=22
-#net=enp6s0
-#net=eth0
-ansible_user=roicxy
-ansible_password=alonso82
+net=enp6s0
+ansible_user=amlight
+ansible_password=wham0Path
 ansible_become=yes
 ansible_become_user=root
-ansible_become_password=alonso82
-ansible_port=22
+ansible_become_password=wham0Path
+ansible_port=2712
 
 
 [int_one:vars]
 inet=1
-#ansible_user=roicxy
-#ansible_password=alonso82
-net=eth0
-#ansible_become=yes
-#ansible_become_password=alonso82
 
 [int_two:vars]
 inet=2
-#ansible_user=roicxy
-#ansible_password=alonso82
-net=eth0
-#ansible_become=yes
-#ansible_become_password=alonso82
 
 [int_three:vars]
-net=enp0s5
 inet=3
-#ansible_user=roicxy
-#ansible_password=alonso82
-#ansible_become=yes
-#ansible_become_password=alonso82
 
 
