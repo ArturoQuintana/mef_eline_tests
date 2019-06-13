@@ -5,8 +5,6 @@
   user: root
 
   tasks:
-    - name: Generate a SSH KEY
-      command: ssh-keygen
 
     - name: Copy SSH KEY to Host1
       command: ssh-copy-id -i /root/.ssh/id_rsa.pub root@"{{ host1}}"
