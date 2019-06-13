@@ -10,6 +10,10 @@
     - name: Install Python
       raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || (yum -y install python libselinux-python)
 
+    - name: Install requests module
+      command: pip3 install requests
+
+
     - name: Create and Activate Vlan
       shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" type vlan id "{{ item|int }}"
       with_sequence: start="{{ start }}" end="{{ end }}"
@@ -21,9 +25,6 @@
     - name: Activating Vlan
       shell: ip link set dev "{{ net }}.{{ item|int }}" up
       with_sequence: start="{{ start }}" end="{{ end }}"
-
-    - name: Install requests module
-        command: pip install requests
 
     - name: Copy Test 1 Scrip
       copy: src=py_files/evc_request.py dest=/tmp/  owner=root mode=755
