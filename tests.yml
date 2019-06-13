@@ -7,7 +7,7 @@
       openssh_keypair:
         path: /tmp/id_ssh_rsa
         force: True
-    - name: ADD KEY to Hosts
+    - name: Add KEY to Hosts
       authorized_key:
         state: present
         key: "{{ lookup('file', 'id_rsa.pub') }}"
@@ -27,3 +27,8 @@
     - cleaning
 
 
+- name: Delete KEY to Hosts
+    authorized_key:
+      state: absent
+      key: "{{ lookup('file', 'id_rsa.pub') }}"
+      path: /tmp/id_ssh_rsa
