@@ -4,6 +4,13 @@
   hosts: localhost
 
   tasks:
+    - name: Copy KEY to HOST 1
+      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ ansible_user }}"@"{{ host1 }}" -p "{{ port }}"
+    - name: Copy KEY to HOST 2
+      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ ansible_user }}"@"{{ host1 }}" -p "{{ port }}"
+    - name: Copy KEY to HOST 3
+      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ ansible_user }}"@"{{ host3 }}" -p "{{ port }}"
+
 
 #    - name: Run Test1
 #      command: ansible-playbook -i hosts test1/test1.yml
