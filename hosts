@@ -21,7 +21,8 @@ int_three
 [all:vars]
 start=20
 end=22
-net=enp6s0
+#net=enp6s0
+net=eth0
 ansible_user=roicxy
 ansible_password=alonso82
 ansible_become=yes
@@ -29,11 +30,20 @@ ansible_become=yes
 
 [int_one:vars]
 inet=1
+ansible_user=roicxy
+ansible_password=alonso82
+ansible_become=yes
 
 [int_two:vars]
 inet=2
+ansible_user=roicxy
+ansible_password=alonso82
+ansible_become=yes
 
 [int_three:vars]
 inet=3
+ansible_user=roicxy
+ansible_password=alonso82
+ansible_become=yes
 
 
