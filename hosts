@@ -21,14 +21,19 @@ int_three
 [all:vars]
 start = 20
 end = 22
-net = enp6s0
-ansible_user = amlight
-ansible_password = wham0Path
+#net = enp6s0
+ansible_user = roicxy
+ansible_password = alonso82
 ansible_become = yes
 ansible_become_user=root
-ansible_become_password=wham0Path
-ansible_port = 2712
+ansible_become_password=alonso82
+ansible_port = 22
 
+[centos:vars]
+net = eth0
+
+[ubutu:vars]
+net = enp5s0
 
 [int_one:vars]
 inet = 1
