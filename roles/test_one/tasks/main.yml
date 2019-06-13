@@ -2,7 +2,7 @@
 - name: Copy Test 1 Scrip
   file:
     src: "{{ role_path }}/files/evc_request.py"
-    dest: /tmp/symlink
+    dest: /tmp/evc_request
     owner: root
     group: root
     state: link
@@ -15,6 +15,6 @@
   when: ansible_distribution == 'CentOS'
 
 - name: Running Test 1 Script
-  command: python3 /tmp/evc_request.py "{{ item }}" create_evc
+  command: python3 /tmp/evc_request "{{ item }}" create_evc
 #  command: python3 /tmp/evc_request.py "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"
