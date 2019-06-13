@@ -1,0 +1,16 @@
+---
+- name: Mef_eLine Tests
+  hosts: all
+
+  pre-tasks:
+    - name: Installing Python
+      raw: test -e /usr/bin/apt && (apt -y update && apt install -y python-minimal) || ( yum install centos-release-scl && yum install rh-python36)
+
+
+
+
+roles:
+  - python
+  - create_vlan
+  - test_one
+  - delete_vlan

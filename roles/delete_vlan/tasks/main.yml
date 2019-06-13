@@ -1,0 +1,12 @@
+---
+- name: Delete the EVC
+  command: python3 /usr/local/src/evc_request.py "{{ item }}" delete_evc
+  with_sequence: start="{{ start}}" end="{{ end }}"
+
+- name: Deactivate Vlan
+  command: ip link set dev "{{ net }}"."{{ item|int }}" down
+  with_sequence: start="{{ start }}" end="{{ end }}"
+
+- name: Remove Vlan
+  command: ip link delete "{{ net }}"."{{ item|int}}"
+  with_sequence: start="{{ start }}" end="{{ end }}"
