@@ -1,5 +1,12 @@
 ## Main Ansible playbook that will call all the tests
 ---
+- name: Install Dependencies
+  hosts: localhost
+
+  roles:
+    - python
+
+
 - name: Mef_eLine Tests
   hosts: localhost
 
@@ -15,11 +22,6 @@
         name: sshpass
         state: present
       when: ansible_distribution == 'Ubuntu'
-
-#    - name: Install Dependencies
-#      roles:
-#        - python
-
 
     - name: Run the Roles
       command: ansible-playbook -i hosts tests.yml
