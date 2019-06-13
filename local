@@ -6,13 +6,13 @@
   tasks:
 
     - name: Copy KEY to HOST 1
-      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
+      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
 
     - name: Copy KEY to HOST 2
-      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
+      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
 
     - name: Copy KEY to HOST 3
-      comand: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host3 }}" -p "{{ port }}"
+      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host3 }}" -p "{{ port }}"
 
 
 #    - name: Run Test1
