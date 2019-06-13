@@ -3,7 +3,6 @@
 - name: Test Connection to Hosts
   hosts: all
   tasks:
-
     - name: Generate KEY
       openssh_keypair:
         path: /tmp/id_ssh_rsa
@@ -16,8 +15,7 @@
         key: "{{ lookup('file', 'id_rsa.pub') }}"
         path: /tmp/id_ssh_rsa
 
-    - name: Ping Hosts
-      ping:
+    ping:
 
 - name: Mef_eLine Tests
   hosts: all
