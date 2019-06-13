@@ -16,17 +16,9 @@
         state: present
       when: ansible_distribution == 'Ubuntu'
 
-#    - name: Generate KEY
-#      raw: ssh-keygen
-#
-#    - name: Copy KEY to HOST 1
-#      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
-#
-#    - name: Copy KEY to HOST 2
-#      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host1 }}" -p "{{ port }}"
-#
-#    - name: Copy KEY to HOST 3
-#      raw: ssh-copy-id -i /root/.ssh/id_rsa.pub "{{ user }}"@"{{ host3 }}" -p "{{ port }}"
+    - name: Install Dependencies
+      rodes:
+        - python
 
 
     - name: Run the Roles

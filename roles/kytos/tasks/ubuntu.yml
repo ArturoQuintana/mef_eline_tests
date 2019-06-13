@@ -1,0 +1,4 @@
+---
+- name: Running Create EVC Script
+  pip:
+    name: kytos
