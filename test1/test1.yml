@@ -22,20 +22,23 @@
       shell: ip link set dev "{{ net }}.{{ item|int }}" up
       with_sequence: start="{{ start }}" end="{{ end }}"
 
-    - name: Copy Test 1 Scrip
-      copy: src=/usr/local/src/request_test1.py dest=/usr/local/src  owner=root mode=755
-
     - name: Install requests module
-      command: pip install requests
+        command: pip install requests
+
+    - name: Copy Test 1 Scrip
+      copy: src=py_files/evc_request.py dest=/tmp/  owner=root mode=755
 
     - name: Running Test 1 Script
-      command: python3 /usr/local/src/request_test1.py "{{ item }}"
+      command: python3 /tmp/evc_request.py "{{ item }}" create_evc
       with_sequence: start="{{ start}}" end="{{ end }}"
 
 
 
 
 #################### Removing Test ###################
+    - name: Delete the EVC
+      command: python3 /usr/local/src/evc_request.py "{{ item }}" delete_evc
+      with_sequence: start="{{ start}}" end="{{ end }}"
 
     - name: Deactivate Vlan
       command: ip link set dev "{{ net }}"."{{ item|int }}" down

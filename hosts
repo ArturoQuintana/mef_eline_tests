@@ -8,7 +8,6 @@
 [int_three]
 67.17.206.218
 
-
 [centos:children]
 int_one
 int_two
@@ -31,7 +30,4 @@ inet=2
 [int_three:vars]
 inet=3
 
-
-[defaults]
-privatekeyfile = /Users/amlight/.ssh/private_key
 

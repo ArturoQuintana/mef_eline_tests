@@ -1,0 +1,7 @@
+[localhost]
+127.0.0.1
+
+[localhost:vars]
+host1=67.17.206.211
+host2=67.17.206.212
+host3=67.17.206.218
