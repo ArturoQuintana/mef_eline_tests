@@ -22,7 +22,7 @@ int_three
 start=20
 end=22
 #net=enp6s0
-net=eth0
+#net=eth0
 ansible_user=roicxy
 ansible_password=alonso82
 ansible_become=yes
@@ -33,22 +33,25 @@ ansible_port=22
 
 [int_one:vars]
 inet=1
-ansible_user=roicxy
-ansible_password=alonso82
+#ansible_user=roicxy
+#ansible_password=alonso82
+net=eth0
 #ansible_become=yes
 #ansible_become_password=alonso82
 
 [int_two:vars]
 inet=2
-ansible_user=roicxy
-ansible_password=alonso82
+#ansible_user=roicxy
+#ansible_password=alonso82
+net=eth0
 #ansible_become=yes
 #ansible_become_password=alonso82
 
 [int_three:vars]
+net=enp0s5
 inet=3
-ansible_user=roicxy
-ansible_password=alonso82
+#ansible_user=roicxy
+#ansible_password=alonso82
 #ansible_become=yes
 #ansible_become_password=alonso82
 
