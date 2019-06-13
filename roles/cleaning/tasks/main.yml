@@ -1,0 +1,7 @@
+---
+- name: Cleaning
+  file:
+    path: /tmp/"{{ item }}"
+    state: absent
+  loop:
+    - evc_request.py

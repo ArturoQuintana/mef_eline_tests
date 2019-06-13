@@ -10,8 +10,10 @@
   roles:
     - python
     - create_vlan
+    - create_evc
     - test_one
     - delete_vlan
     - delete_evc
+    - cleaning
 
 

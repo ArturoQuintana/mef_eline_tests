@@ -2,4 +2,5 @@
 dependencies:
   - role: python
   - role: create_vlan
+  - role: create_evc
   - role: test_one

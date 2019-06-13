@@ -1,0 +1,16 @@
+---
+- name: Copy Test 1 Scrip
+  copy:
+    src: "{{ role_path }}/files/evc_request.py"
+    dest: /tmp/evc_request.py
+
+- import_tasks: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- import_tasks: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+#- name: Delete Test 1 Scrip
+#  file:
+#    path: /tmp/evc_request.py
+#    state: absent

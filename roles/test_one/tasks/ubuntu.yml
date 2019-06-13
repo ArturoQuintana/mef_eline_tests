@@ -1,9 +1,0 @@
----
-- name: Installing requests module
-  pip:
-    name: "requests"
-    execute: pip3
-
-- name: Running Test 1 Script
-  command: python3 /tmp/evc_request.py "{{ item }}" create_evc
-  with_sequence: start="{{ start}}" end="{{ end }}"
