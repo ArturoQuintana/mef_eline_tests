@@ -5,12 +5,13 @@
   tasks:
     - name: Generate KEY
       openssh_keypair:
-        path: /root/
+        path: /tmp/id_ssh_rsa
         force: True
     - name: ADD KEY to Hosts
       authorized_key:
         state: present
-        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        key: "{{ lookup('file', '/tmp/id_ssh_rsa/.ssh/id_rsa.pub') }}"
+        path: /tmp/id_ssh_rsa
 
     - ping:
 
