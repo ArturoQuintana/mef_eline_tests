@@ -4,6 +4,11 @@
   hosts: localhost
 
   tasks:
+    - name: Install SSHPASS
+      pip:
+        name: sshpass
+        execute: pip3
+
 #    - name: Generate KEY
 #      raw: ssh-keygen
 #
