@@ -16,8 +16,8 @@
 #        key: "{{ lookup('file', 'id_rsa.pub') }}"
 #        path: /tmp/id_ssh_rsa
 
-    - action:
-        name: ping
+    - name: Ping Hosts
+      ping:
 
 - name: Mef_eLine Tests
   hosts: all
