@@ -4,7 +4,9 @@
 #    name: "python"
 #    state: latest
 - name: Install SCL
-  command: yum install centos-release-scl
+  yum:
+    name: "centos-release-scl"
+    state: present
 
 - name: Install install Python 3.6 SCL
   command: yum install rh-python36
