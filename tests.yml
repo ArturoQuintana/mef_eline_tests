@@ -9,8 +9,8 @@
         force: True
     - name: ADD KEY to Hosts
       authorized_key:
-      state: present
-      key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
 
     - ping:
 
