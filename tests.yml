@@ -3,7 +3,7 @@
 - name: Test Connection to Hosts
   hosts: all
   tasks:
-    action: ping
+    - ping:
 
 - name: Mef_eLine Tests
   hosts: all
