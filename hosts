@@ -21,9 +21,8 @@ end = 22
 net = enp6s0
 ansible_user = amlight
 ansible_password = wham0Path
-#ansible_become_exe = sudo
 ansible_become=yes
-#ansible_become_user=root
+ansible_become_user=root
 ansible_become_password=wham0Path
 ansible_port = 2712
 
