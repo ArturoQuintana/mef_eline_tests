@@ -16,7 +16,7 @@ class Request():
 
     host = "127.0.0.1"
 
-    file = "/Volumes/Data/Users/Roicxy/Downloads/circuits.json" #"/tmp/circuits.json"
+    file = "/Volumes/Data/Users/Roicxy/Downloads/circuits.txt" #"/tmp/circuits.txt"
 
     url = "http://67.17.206.252:8181/api/kytos/mef_eline/v2/evc/"
 
@@ -35,29 +35,44 @@ class Request():
         self.action = action
         self.host = host
 
-    def save_circuit_request(self, data=None):
+    def save_circuit_request(self, data=None, mode=None):
+        exclude = 'Not Acceptable: This evc already exists.'
 
-        if data:
+        if data and data != exclude:
 
             json_data = ""
 
-            w_io = open(self.file, 'w')
+            io = None
 
-            if os.path.isfile(self.file):
-                json_data = self.update_circuit_request(data)
+            if os.path.isfile(self.file) and mode:
+                io = open(self.file, 'r+')
+                json_data = self.update_circuit_request(io, data)
+            elif os.path.isfile(self.file) and not mode:
+                io = open(self.file, 'w')
+                json_data = data
             else:
+                io = open(self.file, 'w')
                 json_data = self.create_circuit_request(data)
 
-            w_io.write(json_data)
-            w_io.close()
+            io.write(str(json_data))
+            io.close()
 
-    def read_circuit_request(self):
+    def read_circuit_request(self, r_io=None):
 
-        r_io = open(self.file, 'r')
-        data = r_io.read()
-        r_io.close()
+        if r_io:
 
-        return dict(data)
+            data = r_io.readlines()
+            r_io.close()
+
+            return eval("".join(data))
+        else:
+            if os.path.isfile(self.file):
+                r_io = open(self.file, 'r')
+
+                data = r_io.readlines()
+                r_io.close()
+
+                return eval("".join(data))
 
     def create_circuit_request(self, data=None):
         """
@@ -69,15 +84,13 @@ class Request():
 
         return d
 
-    def update_circuit_request(self, data=None):
+    def update_circuit_request(self, io=None, data=None):
 
-        if data:
+        if data and io:
 
-            file = self.read_circuit_request()
+            file = self.read_circuit_request(io)
 
-            # dict_data = dict(file)
-
-            file.__setitem__(self.host, self.value, v=data)
+            file.update({self.host: {self.value: data}})
 
             return file
 
@@ -85,7 +98,7 @@ class Request():
 
             file = self.read_circuit_request()
 
-            file.pop(self.host, self.value)
+            file.get(self.host).pop(self.value)
 
             return file
 
@@ -118,7 +131,12 @@ class Request():
 
         :return:
         """
-        msg_data = self.url + self.read_circuit_request().get(self.host, self.value)
+        msg_data = None
+
+        data = self.read_circuit_request()
+
+        if self.host in data and self.value in data.get(self.host):
+            msg_data = self.url + data.get(self.host).get(self.value).get("circuit_id")
 
         return msg_data
 
@@ -129,33 +147,36 @@ class Request():
         """
         resp = ""
         data = None
+        mode = None
 
         if self.action == "create_evc":
 
             resp = requests.post(url=self.url, json=self.create_evc(),
                                 headers=self.headers)
 
-            data = self.create_circuit_request(resp.text)
+            data = eval(resp.text)
 
         elif self.action == "delete_evc":
 
-            test = self.read_circuit_request().get(self.host, self.value)
+            rem_evc = self.delete_evc()
 
-            resp = requests.delete(self.delete_evc())
+            if rem_evc:
 
-            if resp.text == "":
-                data = self.update_circuit_request()
+                resp = requests.delete(rem_evc)
 
-            print(resp)
+                if resp.text.__contains__("Circuit removed"):
+                    data = self.update_circuit_request()
 
-        self.save_circuit_request(data)
+                print(resp)
+
+        self.save_circuit_request(data, mode)
 
 
 if __name__ == "__main__":
 
-    arg_1 = "127.0.0.1" #sys.argv[1]
-    arg_2 = "31" #sys.argv[2]
-    arg_3 = "create_evc" #sys.argv[3]
+    arg_1 = sys.argv[1]
+    arg_2 = sys.argv[2]
+    arg_3 = sys.argv[3]
 
     evc_req = Request(host=arg_1, value=arg_2, action=arg_3)
     evc_req.actions()
