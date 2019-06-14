@@ -29,7 +29,7 @@ class Ping():
 
         print(ping_var)
 
-        op = open(self.file, 'w')
+        op = open(self.file, 'a')
         op.write(str(ping_var.output))
 
         op.close()

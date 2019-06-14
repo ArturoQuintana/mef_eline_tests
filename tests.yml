@@ -21,12 +21,12 @@
 - name: Mef_eLine Tests
   hosts: all
   roles:
-#    - python
+    - python
 #    - create_vlan
 #    - create_evc
-    - test_one
-    - delete_vlan
-    - delete_evc
+#    - test_one
+#    - delete_vlan
+#    - delete_evc
 #    - cleaning
 
 
