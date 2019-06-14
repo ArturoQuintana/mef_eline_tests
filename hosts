@@ -22,11 +22,11 @@ int_three
 start = 20
 end = 22
 net = enp6s0
-ansible_user = amlight
-ansible_password = wham0Path
-ansible_become = yes
-ansible_become_user=root
-ansible_become_password=C1arA1Nt*
+ansible_user = root
+ansible_password = C1arA1Nt*
+#ansible_become = yes
+#ansible_become_user=root
+#ansible_become_password=C1arA1Nt*
 ansible_port = 2712
 
 [centos:vars]

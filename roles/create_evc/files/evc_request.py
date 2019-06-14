@@ -70,6 +70,7 @@ class Request():
             req = requests.post(url=self.url, json=self.create_evc(),
                                 headers=self.headers)
             resp = req.text
+
             print(resp)
 
         elif self.type == "delete_evc":
@@ -78,6 +79,22 @@ class Request():
 
             resp = req.text
             print(resp)
+
+    def save_circuit_request(self, data=None):
+
+        if data:
+            w_io = open("/tmp/circuits.json", 'w')
+            w_io.write(data)
+            w_io.close()
+
+
+
+    def read_circuit_request(self):
+
+        r_io = open("/tmp/circuits.json", 'r')
+
+
+
 
 
 if __name__ == "__main__":
