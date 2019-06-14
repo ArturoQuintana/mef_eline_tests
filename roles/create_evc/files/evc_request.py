@@ -16,7 +16,7 @@ class Request():
 
     host = "127.0.0.1"
 
-    file = "/tmp/circuits.json"
+    file = "/Volumes/Data/Users/Roicxy/Downloads/circuits.json" #"/tmp/circuits.json"
 
     url = "http://67.17.206.252:8181/api/kytos/mef_eline/v2/evc/"
 
@@ -65,7 +65,9 @@ class Request():
         :param data:
         :return:
         """
-        return dict.setdefault(self.host, dict.setdefault(self.value, data))
+        d = {self.host: {self.value: data}}
+
+        return d
 
     def update_circuit_request(self, data=None):
 
@@ -152,7 +154,7 @@ class Request():
 if __name__ == "__main__":
 
     arg_1 = "127.0.0.1" #sys.argv[1]
-    arg_2 = "30" #sys.argv[2]
+    arg_2 = "31" #sys.argv[2]
     arg_3 = "create_evc" #sys.argv[3]
 
     evc_req = Request(host=arg_1, value=arg_2, action=arg_3)
