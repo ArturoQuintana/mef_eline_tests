@@ -25,6 +25,7 @@ end = 22
 ansible_user = roicxy
 ansible_password = alonso82
 ansible_become = yes
+#ansible_become_user = -
 ansible_become_user=root
 ansible_become_password=alonso82
 ansible_port = 22
@@ -37,11 +38,13 @@ net = enp0s5
 
 [int_one:vars]
 inet = 1
+#ansible_password = wham0Path
 
 [int_two:vars]
 inet = 2
+#ansible_password = C1arA1Nt*
 
 [int_three:vars]
 inet = 3
-
+#ansible_password = wham0Path
 
