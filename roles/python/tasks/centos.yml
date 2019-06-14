@@ -7,6 +7,7 @@
 - name: Install install Python 3.6 SCL
   yum:
     name: "rh-python36"
+    state: present
 
-- name: Activate Python 3.6 SCL Bash
-  command: scl enable rh-python36 bash
+#- name: Activate Python 3.6 SCL Bash
+#  command: scl enable rh-python36 bash

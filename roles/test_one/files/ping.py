@@ -28,6 +28,11 @@ class Ping():
 
         print(ping_var)
 
+        op = open("/tmp/ping_result.txt", 'w')
+        op.write(ping_var)
+        op.close()
+
+
 
 
 
