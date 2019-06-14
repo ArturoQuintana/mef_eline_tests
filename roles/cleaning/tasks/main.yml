@@ -6,3 +6,4 @@
   loop:
     - "evc_request.py"
     - "ping.py"
+    - "circuits.json"

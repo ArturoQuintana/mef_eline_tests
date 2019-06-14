@@ -1,6 +1,6 @@
 ---
 - name: Create and Activate Vlan
-  shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" type vlan id "{{ item|int }}"
+  shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" action vlan id "{{ item|int }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Setting Vlan
