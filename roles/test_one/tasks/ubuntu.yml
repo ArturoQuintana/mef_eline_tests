@@ -6,11 +6,11 @@
 
 - name: Running Create EVC Script
   tasks:
-    - name: Running Script on 10.0."{{ item|int }}"."{{ inet }}"/24
-      command: python3 /tmp/ping.py 10.0."{{ item|int }}"."{{ inet }}"/24 4 time
+    - name: Running Script on 10.0."{{ var_int|int }}".{{ hostvars["{{ item}}"][inet] }}/24
+      command: python3 /tmp/ping.py 10.0."{{ var_int|int }}".{{ hostvars["{{ item}}"][inet] }}/24 4 time
       register: output
 
-    - name: Print output Ping for 10.0."{{ item|int }}"."{{ inet }}"/24
+    - name: Print output Ping for 10.0."{{ var_int|int }}".{{ hostvars["{{ item}}"][inet] }}/24
       debug:
         var: output.stdout_lines
 
