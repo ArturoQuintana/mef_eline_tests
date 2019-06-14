@@ -1,7 +1,6 @@
 ---
 - name: Installing requests module
   pip:
-    executable: pip3
     name: "requests"
 
 

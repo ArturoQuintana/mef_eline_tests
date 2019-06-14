@@ -1,4 +1,8 @@
 ---
+- name: Install Pip in Ubuntu
+  apt:
+    name: "pip"
+    state: latest
 
 - name: Install Python in Ubuntu
   apt:
