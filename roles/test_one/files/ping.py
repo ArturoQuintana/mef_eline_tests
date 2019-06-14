@@ -8,8 +8,9 @@ import sys
 class Ping():
 
     flag = ""
-    tartget = ""
+    target = ""
     count = 0
+    file = "/tmp/ping_result.txt"
 
     def __init__(self, target="127.0.0.1", count=4, flag=None):
         """
@@ -18,28 +19,26 @@ class Ping():
         :param count:
         :param flag:
         """
-        self.tartget = target
+        self.target = target
         self.count = count
         self.flag = flag
 
     def run_ping(self):
 
-        ping_var = ping('8.8.8.8', verbose=True)
+        ping_var = ping(self.target, count=self.count,verbose=True)
 
         print(ping_var)
 
-        op = open("/tmp/ping_result.txt", 'w')
-        op.write(ping_var)
+        op = open(self.file, 'w')
+        op.write(str(ping_var.output))
+
         op.close()
 
 
-
-
-
 if __name__ == "__main__":
-    arg_one = 'google.com' #sys.argv[1]
-    arg_two = "4" #sys.argv[2]
-    arg_three = "" #sys.argv[3]
+    arg_one = sys.argv[1]
+    arg_two = sys.argv[2]
+    arg_three = sys.argv[3]
 
     var = Ping(target=arg_one, count=arg_two, flag=arg_three)
     var.run_ping()
