@@ -1,0 +1,8 @@
+---
+- name: Beginning the Controller Setups
+  hosts: all
+  become: yes
+  become_user: root
+  tasks:
+    - name: Run the Roles
+        command: ansible-playbook controller.yml
