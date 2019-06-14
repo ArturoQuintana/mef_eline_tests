@@ -5,5 +5,5 @@
 
 
 - name: Running Create EVC Script
-  command: python3 /tmp/evc_request.py "{{ item }}" create_evc
+  command: python3 /tmp/evc_request.py inventory_hostname "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"

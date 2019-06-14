@@ -3,5 +3,5 @@
   command: /opt/rh/rh-python36/root/usr/bin/pip3 install requests
 
 - name: Running Create EVC Script
-  command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py "{{ item }}" create_evc
+  command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py inventory_hostname "{{ item }}" create_evc
   with_sequence: start="{{ start}}" end="{{ end }}"
