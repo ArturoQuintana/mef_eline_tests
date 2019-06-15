@@ -14,9 +14,9 @@
 #        key: "{{ lookup('file', 'id_rsa.pub') }}"
 #        path: /tmp/id_ssh_rsa
 
-  tasks:
-    - name: Ping the Hosts
-      ping:
+#  tasks:
+#    - name: Ping the Hosts
+#      ping:
 
 #    - name: Start Role create_vlan
 #      include_role:
@@ -26,9 +26,10 @@
 #      include_role:
 #        name: create_vlan
 
-    - name: Start Role create_evc
-      include_role:
-        name: create_evc
+- name: Start Role create_evc
+  hosts: local
+  include_role:
+    name: create_evc
 
 #    - name: Start Role test_one
 #      include_role:
@@ -38,13 +39,13 @@
 #      include_role:
 #        name: delete_evc
 
-    - name: Start Role delete_vlan
-      include_role:
-        name: delete_vlan
-
-    - name: Start Role cleaning
-      include_role:
-        name: cleaning
+#    - name: Start Role delete_vlan
+#      include_role:
+#        name: delete_vlan
+#
+#    - name: Start Role cleaning
+#      include_role:
+#        name: cleaning
 
 #  post_tasks:
 #    - name: Delete KEY from Hosts

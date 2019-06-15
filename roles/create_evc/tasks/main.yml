@@ -4,17 +4,13 @@
 #    src: "{{ role_path }}/files/evc_request.py"
 #    dest: /tmp/evc_request.py
 
-- name: Creating EVCs
-  hosts: local
-  tasks:
-    -
-    - name: Run script in CentOS
-      include: centos.yml
-      when: ansible_distribution == 'CentOS'
+ - name: Run script in CentOS
+   include: centos.yml
+   when: ansible_distribution == 'CentOS'
 
-    - name: Run script in Ubuntu
-      include: ubuntu.yml
-      when: ansible_distribution == 'Ubuntu'
+- name: Run script in Ubuntu
+  include: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
 
 #- name: Delete Test 1 Scrip
 #  file:
