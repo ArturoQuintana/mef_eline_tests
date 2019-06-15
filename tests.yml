@@ -20,8 +20,8 @@
 - name: Mef_eLine Tests
   hosts: all
   roles:
-    - python
-#    - create_vlan
+#    - python
+    - create_vlan
 #    - create_evc
 #    - test_one
 #    - delete_vlan
