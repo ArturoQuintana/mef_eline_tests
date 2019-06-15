@@ -4,12 +4,11 @@
 #    src: "{{ role_path }}/files/evc_request.py"
 #    dest: /tmp/evc_request.py
 
- - name: Run script in CentOS
-   include: centos.yml
-   when: ansible_distribution == 'CentOS'
 
-- name: Run script in Ubuntu
-  include: ubuntu.yml
+- import_tasks: centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- import_tasks: ubuntu.yml
   when: ansible_distribution == 'Ubuntu'
 
 #- name: Delete Test 1 Scrip
