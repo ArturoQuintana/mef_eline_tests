@@ -7,10 +7,10 @@
 - name: Creating EVCs
   hosts: local
   tasks:
-    - include_tasks: centos.yml
+    - include: centos.yml
       when: ansible_distribution == 'CentOS'
 
-    - include_tasks: ubuntu.yml
+    - include: ubuntu.yml
       when: ansible_distribution == 'Ubuntu'
 
 #- name: Delete Test 1 Scrip
