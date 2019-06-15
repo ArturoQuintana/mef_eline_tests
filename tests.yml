@@ -22,12 +22,12 @@
 #      include_role:
 #        name: create_vlan
 
-  post_tasks:
-    - name: Delete KEY from Hosts
-      authorized_key:
-        state: absent
-        key: "{{ lookup('file', 'id_rsa.pub') }}"
-        path: /tmp/id_ssh_rsa
+#  post_tasks:
+#    - name: Delete KEY from Hosts
+#      authorized_key:
+#        state: absent
+#        key: "{{ lookup('file', 'id_rsa.pub') }}"
+#        path: /tmp/id_ssh_rsa
 
 
 #
