@@ -3,38 +3,38 @@
   yum:
     name: vconfig
 
-- name: Create Vlan
-  command: "./vconfig add {{ net }} {{ item|int }} up"
-#  args:
-#    executable: ./
+#- name: Create Vlan
+#  command: "./vconfig add {{ net }} {{ item|int }} up"
+##  args:
+##    executable: ./
+##
+#  with_sequence: start="{{start }}" end="{{ end }}"
 #
-  with_sequence: start="{{start }}" end="{{ end }}"
-
-- name: Activating Vlan
-  command: "./ifconfig {{ net }}.{{ item|int }} 10.0.{{ item|int }}.{{ inet|int }}/24 up"
-#  args:
-#    executable: ./
-  with_sequence: start="{{ start }}" end="{{ end }}"
+#- name: Activating Vlan
+#  command: "./ifconfig {{ net }}.{{ item|int }} 10.0.{{ item|int }}.{{ inet|int }}/24 up"
+##  args:
+##    executable: ./
+#  with_sequence: start="{{ start }}" end="{{ end }}"
 
 
 #- name: Install vconfig
 #  shell: yum install vconfig.x86_64
 #  args:
 #    executable: /bin/bash
-#
-#- name: Create and Activate Vlan
-#  shell: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
-#  args:
-#    executable: /bin/bash
-#  with_sequence: start="{{ start }}" end="{{ end }}"
-#
-#- name: Setting Vlan
-#  shell: "ip addr add 10.0.{{ item }}.{{ inet }}/24 brd 10.0.{{ item|int }}.255 dev {{ net }}.{{ item }}"
-#  args:
-#    executable: /bin/bash
-#
-#  with_sequence: start="{{ start }}" end="{{ end }}"
-#
-#- name: Activating Vlan
-#  raw: "ip link set dev {{ net }}.{{ item }} up"
-#  with_sequence: start="{{ start }}" end="{{ end }}"
+
+- name: Create and Activate Vlan
+  shell: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
+  args:
+    executable: /bin/bash
+  with_sequence: start="{{ start }}" end="{{ end }}"
+
+- name: Setting Vlan
+  shell: "ip addr add 10.0.{{ item }}.{{ inet }}/24 brd 10.0.{{ item|int }}.255 dev {{ net }}.{{ item }}"
+  args:
+    executable: /bin/bash
+
+  with_sequence: start="{{ start }}" end="{{ end }}"
+
+- name: Activating Vlan
+  raw: "ip link set dev {{ net }}.{{ item }} up"
+  with_sequence: start="{{ start }}" end="{{ end }}"
