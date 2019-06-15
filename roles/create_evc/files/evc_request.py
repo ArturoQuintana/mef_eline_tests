@@ -16,7 +16,7 @@ class Request():
 
     host = "127.0.0.1"
 
-    file = "/Volumes/Data/Users/Roicxy/Downloads/circuits.txt" #"/tmp/circuits.txt"
+    file = "/tmp/circuits.txt"
 
     url = "http://67.17.206.252:8181/api/kytos/mef_eline/v2/evc/"
 
