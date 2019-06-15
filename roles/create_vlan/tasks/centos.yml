@@ -10,9 +10,3 @@
 - name: Activating Vlan
   shell: ip link set dev "{{ net }}.{{ item|int }}" up
   with_sequence: start="{{ start }}" end="{{ end }}"
-
-- import_tasks: centos.yml
-  when: ansible_distribution == 'CentOS'
-
-- import_tasks: ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
