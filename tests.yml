@@ -18,10 +18,10 @@
         - create_vlan
 
     - name: Delete KEY from Hosts
-        authorized_key:
-          state: absent
-          key: "{{ lookup('file', 'id_rsa.pub') }}"
-          path: /tmp/id_ssh_rsa
+      authorized_key:
+        state: absent
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+        path: /tmp/id_ssh_rsa
 
 
 #
