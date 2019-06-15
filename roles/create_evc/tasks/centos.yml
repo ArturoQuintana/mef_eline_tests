@@ -7,7 +7,7 @@
 
 
 - name: Running Create EVC Script
-  script: "{{ role_path }}/files/evc_request.py inventory_hostname {{ item }} create_evc"
+  script: "{{ role_path }}"/files/evc_request.py --some-argument inventory_hostname "{{ item }}" create_evc
   args:
     chdir: /tmp
     executable: /opt/rh/rh-python36/root/usr/bin/python3

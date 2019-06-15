@@ -17,6 +17,10 @@
         state: present
       when: ansible_distribution == 'Ubuntu'
 
+    - name: Install Python
+      include_role:
+        name: python
+
     - name: Run the Roles
       command: ansible-playbook -i hosts tests.yml
 
