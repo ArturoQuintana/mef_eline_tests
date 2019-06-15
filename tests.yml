@@ -18,9 +18,9 @@
     - name: Ping the Hosts
       ping:
 
-    - name: Start Roles
-      include_role:
-        name: create_vlan
+#    - name: Start Roles
+#      include_role:
+#        name: create_vlan
 
   post_tasks:
     - name: Delete KEY from Hosts
