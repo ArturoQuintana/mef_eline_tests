@@ -30,13 +30,13 @@
       include_role:
         name: create_evc
 
-    - name: Start Role test_one
-      include_role:
-        name: test_one
-
-    - name: Start Role delete_evc
-      include_role:
-        name: delete_evc
+#    - name: Start Role test_one
+#      include_role:
+#        name: test_one
+#
+#    - name: Start Role delete_evc
+#      include_role:
+#        name: delete_evc
 
     - name: Start Role delete_vlan
       include_role:
