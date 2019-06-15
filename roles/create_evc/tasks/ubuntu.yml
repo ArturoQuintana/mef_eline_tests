@@ -1,8 +1,8 @@
 ---
-- name: Installing requests module
-  pip:
-    name: "requests"
-    executable: pip3
+#- name: Installing requests module
+#  pip:
+#    name: "requests"
+#    executable: pip3
 
 
 - name: Running Create EVC Script

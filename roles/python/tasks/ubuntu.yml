@@ -8,3 +8,11 @@
   apt:
     name: "python"
     state: latest
+
+- name: Installing requests module
+  pip:
+    name: "requests"
+
+- name: Installing pythonping module
+  pip:
+    name: "pythonping"

@@ -1,9 +1,9 @@
 ---
 #- name: Installing requests module
 #  command: /opt/rh/rh-python36/root/usr/bin/pip3 install requests
-- name: Installing requests module
-  pip:
-    name: "requests"
+#- name: Installing requests module
+#  pip:
+#    name: "requests"
 
 
 - name: Running Create EVC Script

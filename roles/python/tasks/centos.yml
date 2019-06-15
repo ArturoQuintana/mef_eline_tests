@@ -1,7 +1,7 @@
 ---
 - name: Install  epel-release
   yum:
-    name: epel-release
+    name: "epel-release"
 
 - name: Install SCL
   yum:
@@ -15,7 +15,16 @@
 
 - name: Install pip
   yum:
-    name: python-pip
+    name: "python-pip"
+
+
+- name: Installing requests module
+  pip:
+    name: "requests"
+
+- name: Installing pythonping module
+  pip:
+    name: "pythonping"
 
 #- name: Activate Python 3.6 SCL Bash
 #  command: scl enable rh-python36 bash
