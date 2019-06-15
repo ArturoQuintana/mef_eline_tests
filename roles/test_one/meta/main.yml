@@ -1,5 +1,5 @@
----
-dependencies:
-  - role: python
-  - role: create_vlan
-  - role: create_evc
+#---
+#dependencies:
+#  - role: python
+#  - role: create_vlan
+#  - role: create_evc
