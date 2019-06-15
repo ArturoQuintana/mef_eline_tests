@@ -1,12 +1,12 @@
 ---
 - name: Create and Activate Vlan
-  shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" action vlan id "{{ item|int }}"
+  shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item }}" action vlan id "{{ item }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Setting Vlan
-  command: ip addr add 10.0."{{ item|int }}"."{{ inet }}"/24 brd 10.0."{{ item|int }}".255 dev "{{ net }}.{{ item|int }}"
+  command: ip addr add 10.0."{{ item }}"."{{ inet }}"/24 brd 10.0."{{ item }}".255 dev "{{ net }}.{{ item }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Activating Vlan
-  shell: ip link set dev "{{ net }}.{{ item|int }}" up
+  shell: ip link set dev "{{ net }}.{{ item }}" up
   with_sequence: start="{{ start }}" end="{{ end }}"

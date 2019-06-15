@@ -2,6 +2,7 @@
 - name: Installing iproute2 module
   apt:
     name: "iproute2"
+
 - name: Installing vconfig
   apt:
     name: "vconfig"
@@ -15,9 +16,9 @@
 #  with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Setting Vlan
-  command: ip addr add 10.0."{{ item|int }}"."{{ inet }}"/24 brd 10.0."{{ item|int }}".255 dev "{{ net }}.{{ item|int }}"
+  command: ip addr add 10.0."{{ item }}"."{{ inet }}"/24 brd 10.0."{{ item }}".255 dev "{{ net }}.{{ item }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Activating Vlan
-  command: ip link set up "{{ net }}.{{ item|int }}" up
+  command: ip link set up "{{ net }}.{{ item }}" up
   with_sequence: start="{{ start }}" end="{{ end }}"
