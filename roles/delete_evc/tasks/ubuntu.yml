@@ -4,4 +4,4 @@
   args:
     chdir: /tmp
     executable: python3
-  with_sequence: start="{{ start }}" end="{{ end }}"
+  with_sequence: start="{{ start|int }}" end="{{ end|int }}"
