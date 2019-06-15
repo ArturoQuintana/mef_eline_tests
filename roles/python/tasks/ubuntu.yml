@@ -12,7 +12,9 @@
 - name: Installing requests module
   pip:
     name: "requests"
+    executable: pip3
 
 - name: Installing pythonping module
   pip:
     name: "pythonping"
+    executable: pip3
