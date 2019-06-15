@@ -14,8 +14,7 @@
         key: "{{ lookup('file', 'id_rsa.pub') }}"
         path: /tmp/id_ssh_rsa
 
-    - name: Starting mef_eline Tests
-      roles:
+    - roles:
         - create_vlan
 
     - name: Delete KEY from Hosts
