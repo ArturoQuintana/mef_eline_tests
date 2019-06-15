@@ -10,7 +10,7 @@
       when: ansible_distribution == 'CentOS'
 
     - import_tasks: ubuntu.yml
-    when: ansible_distribution == 'Ubuntu'
+      when: ansible_distribution == 'Ubuntu'
 
 #- name: Delete Test 1 Scrip
 #  file:
