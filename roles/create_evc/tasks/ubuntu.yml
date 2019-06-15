@@ -8,6 +8,6 @@
 - name: Running Create EVC Script
   script: "{{ role_path }}"/files/evc_request.py --some-argument inventory_hostname "{{ item }}" create_evc
   args:
-    chdir: /tmp/
+    chdir: /tmp
     executable: python3
   with_sequence: start="{{ start }}" end="{{ end }}"
