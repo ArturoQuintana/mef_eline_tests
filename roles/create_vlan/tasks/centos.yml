@@ -1,12 +1,14 @@
 ---
 - name: Create and Activate Vlan
   shell: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
-  executable: /bin/bash
+  args:
+    executable: /bin/bash
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Setting Vlan
   shell: "ip addr add 10.0.{{ item }}.{{ inet }}/24 brd 10.0.{{ item|int }}.255 dev {{ net }}.{{ item }}"
-  executable: /bin/bash
+  args:
+    executable: /bin/bash
 
   with_sequence: start="{{ start }}" end="{{ end }}"
 
