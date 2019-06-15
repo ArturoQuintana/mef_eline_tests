@@ -20,7 +20,7 @@ class Ping():
         :param flag:
         """
         self.target = target
-        self.count = count
+        self.count = int(count)
         self.flag = flag
 
     def run_ping(self):
