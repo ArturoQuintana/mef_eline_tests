@@ -1,4 +1,7 @@
 ---
-- name: Deleting EVCs
-  command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py inventory_hostname "{{ item }}" delete_evc
-  with_sequence: start="{{ start}}" end="{{ end }}"
+- name: Running Create EVC Script
+  script: "/roles/create_evc/files/evc_request.py inventory_hostname {{ item }} create_evc"
+  args:
+    chdir: /tmp
+    executable: /opt/rh/rh-python36/root/usr/bin/python3
+  with_sequence: start="{{ start}}" end="{{ end }}"{ end }}"
