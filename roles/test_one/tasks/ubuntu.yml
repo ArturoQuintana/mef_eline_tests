@@ -1,5 +1,5 @@
 ---
-- name: Installing requests module
+- name: Installing pythonping module
   pip:
     name: "pythonping"
     executable: pip3

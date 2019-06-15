@@ -1,6 +1,9 @@
 ---
-- name: Installing requests module
-  command: /opt/rh/rh-python36/root/usr/bin/pip3 install pythonping
+#- name: Installing requests module
+#  command: /opt/rh/rh-python36/root/usr/bin/pip3 install pythonping
+- name: Installing pythonping module
+  pip:
+    name: "pythonping"
 
 - name: Running Test 1 Script
   tasks:

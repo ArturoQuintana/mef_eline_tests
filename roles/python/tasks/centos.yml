@@ -1,4 +1,8 @@
 ---
+- name: Install  epel-release
+  yum:
+    name: epel-release
+
 - name: Install SCL
   yum:
     name: "centos-release-scl"
@@ -8,6 +12,10 @@
   yum:
     name: "rh-python36"
     state: present
+
+- name: Install pip
+  yum:
+    name: python-pip
 
 #- name: Activate Python 3.6 SCL Bash
 #  command: scl enable rh-python36 bash

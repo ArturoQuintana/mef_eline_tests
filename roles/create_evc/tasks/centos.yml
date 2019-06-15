@@ -1,6 +1,10 @@
 ---
+#- name: Installing requests module
+#  command: /opt/rh/rh-python36/root/usr/bin/pip3 install requests
 - name: Installing requests module
-  command: /opt/rh/rh-python36/root/usr/bin/pip3 install requests
+  pip:
+    name: "requests"
+
 
 - name: Running Create EVC Script
   command: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py inventory_hostname "{{ item }}" create_evc
