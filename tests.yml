@@ -19,32 +19,32 @@
       ping:
 
     - name: Start Role create_vlan
-        include_role:
-          name: python
+      include_role:
+        name: python
 
     - name: Start Role create_vlan
       include_role:
         name: create_vlan
 
     - name: Start Role create_evc
-        include_role:
-          name: create_evc
+      include_role:
+        name: create_evc
 
     - name: Start Role test_one
-        include_role:
-          name: test_one
+      include_role:
+        name: test_one
 
     - name: Start Role delete_evc
-        include_role:
-          name: delete_evc
+      include_role:
+        name: delete_evc
 
     - name: Start Role delete_vlan
-        include_role:
-          name: delete_vlan
+      include_role:
+        name: delete_vlan
 
     - name: Start Role cleaning
-        include_role:
-          name: cleaning
+      include_role:
+        name: cleaning
 
 #  post_tasks:
 #    - name: Delete KEY from Hosts
