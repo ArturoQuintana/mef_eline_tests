@@ -14,7 +14,8 @@
         key: "{{ lookup('file', 'id_rsa.pub') }}"
         path: /tmp/id_ssh_rsa
 
-    - roles:
+    - name: Start Roles
+      roles:
         - create_vlan
 
     - name: Delete KEY from Hosts
