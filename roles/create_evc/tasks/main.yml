@@ -1,8 +1,8 @@
 ---
-- name: Copy EVC Scrip
-  copy:
-    src: "{{ role_path }}/files/evc_request.py"
-    dest: /tmp/evc_request.py
+#- name: Copy EVC Scrip
+#  copy:
+#    src: "{{ role_path }}/files/evc_request.py"
+#    dest: /tmp/evc_request.py
 
 - import_tasks: centos.yml
   when: ansible_distribution == 'CentOS'
