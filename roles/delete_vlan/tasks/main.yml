@@ -1,4 +1,4 @@
 ---
 - name: Remove Vlan
-  shell: "vconfig rem {{ net }}.{{ item }}"
+  shell: "vconfig rem {{ net }}.{{ item|int }}"
   with_sequence: start="{{ start }}" end="{{ end }}"

@@ -4,11 +4,11 @@
     name: vlan
 
 - name: Create Vlan
-  shell: "vconfig add {{ net }} {{ item }} up"
+  shell: "vconfig add {{ net }} {{ item|int }} up"
   with_sequence: start="{{start}}" end="{{end}}"
 - name: Activating Vlan
-  shell: "ifconfig {{ net }}.{{ item }} 10.0.{{ item }}.{{ inet }}/24 up"
-  with_sequence: start="{{ start}}" end="{{ end }}"
+  shell: "ifconfig {{ net }}.{{ item|int }} 10.0.{{ item|int }}.{{ inet|int }}/24 up"
+  with_sequence: start="{{ start }}" end="{{ end }}"
 
 #- name: Installing iproute2 module
 #  apt:
