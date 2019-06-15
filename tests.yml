@@ -28,8 +28,10 @@
 
 - name: Start Role create_evc
   hosts: local
-  include_role:
-    name: create_evc
+  tasks:
+    - name: Create EVCs
+      include_role:
+        name: create_evc
 
 #    - name: Start Role test_one
 #      include_role:
