@@ -2,7 +2,7 @@
 ---
 - name: Test Connection to Hosts
   hosts: all
-  tasks:
+  pre_tasks:
     - name: Generate KEY
       openssh_keypair:
         path: /tmp/id_ssh_rsa
@@ -14,10 +14,12 @@
         key: "{{ lookup('file', 'id_rsa.pub') }}"
         path: /tmp/id_ssh_rsa
 
+  tasks:
     - name: Start Roles
-      roles:
-        - create_vlan
+      include_role:
+        name: create_vlan
 
+  post_tasks:
     - name: Delete KEY from Hosts
       authorized_key:
         state: absent
