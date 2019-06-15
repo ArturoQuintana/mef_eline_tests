@@ -18,13 +18,13 @@
     - name: Ping the Hosts
       ping:
 
-    - name: Start Role create_vlan
-      include_role:
-        name: python
-
-    - name: Start Role create_vlan
-      include_role:
-        name: create_vlan
+#    - name: Start Role create_vlan
+#      include_role:
+#        name: python
+#
+#    - name: Start Role create_vlan
+#      include_role:
+#        name: create_vlan
 
     - name: Start Role create_evc
       include_role:
