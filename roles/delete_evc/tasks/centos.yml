@@ -4,4 +4,4 @@
   args:
     chdir: /tmp
     executable: /opt/rh/rh-python36/root/usr/bin/python3
-  with_sequence: start="{{ start}}" end="{{ end }}"{ end }}"
+  with_sequence: start="{{ start }}" end="{{ end }}"
