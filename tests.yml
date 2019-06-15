@@ -13,25 +13,25 @@
         state: present
         key: "{{ lookup('file', 'id_rsa.pub') }}"
         path: /tmp/id_ssh_rsa
-
-- name: Mef_eLine Tests
-  hosts: all
-  roles:
-#    - python
-    - create_vlan
-#    - create_evc
-#    - test_one
-#    - delete_vlan
-#    - delete_evc
-#    - cleaning
-
-
-#- name: Delete KEY
+#
+#- name: Mef_eLine Tests
 #  hosts: all
-#  tasks:
-#    - name: Delete KEY from Hosts
-#      authorized_key:
-#        user: ansible_user
-#        state: absent
-#        key: "{{ lookup('file', 'id_rsa.pub') }}"
-#        path: /tmp/id_ssh_rsa
+#  roles:
+##    - python
+#    - create_vlan
+##    - create_evc
+##    - test_one
+##    - delete_vlan
+##    - delete_evc
+##    - cleaning
+#
+
+- name: Delete KEY
+  hosts: all
+  tasks:
+    - name: Delete KEY from Hosts
+      authorized_key:
+        user: ansible_user
+        state: absent
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+        path: /tmp/id_ssh_rsa
