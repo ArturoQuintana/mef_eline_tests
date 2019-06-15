@@ -1,10 +1,10 @@
 ---
 - name: Create and Activate Vlan
-  raw: ip link add link "{{ net }}" name "{{ net }}"."{{ item }}" action vlan id "{{ item }}"
+  raw: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" action vlan id "{{ item|int }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Setting Vlan
-  raw: ip addr add 10.0."{{ item }}"."{{ inet }}"/24 brd 10.0."{{ item }}".255 dev "{{ net }}.{{ item }}"
+  raw: ip addr add 10.0."{{ item|int }}"."{{ inet }}"/24 brd 10.0."{{ item|int }}".255 dev "{{ net }}.{{ item }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 - name: Activating Vlan
