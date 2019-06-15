@@ -1,8 +1,4 @@
 ---
-- name: Deactivate Vlan
-  command: ip link set dev "{{ net }}"."{{ item|int }}" down
-  with_sequence: start="{{ start }}" end="{{ end }}"
-
 - name: Remove Vlan
-  command: ip link delete "{{ net }}"."{{ item|int}}"
+  shell: "vconfig del {{ net }}:{{ item }}"
   with_sequence: start="{{ start }}" end="{{ end }}"
