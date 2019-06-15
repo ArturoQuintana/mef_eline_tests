@@ -23,7 +23,7 @@
 #    executable: /bin/bash
 
 - name: Create and Activate Vlan
-  shell: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
+  raw: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
   args:
     executable: /bin/bash
   with_sequence: start="{{ start }}" end="{{ end }}"
