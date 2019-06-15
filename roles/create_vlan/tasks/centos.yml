@@ -1,10 +1,21 @@
 ---
-- name: Install  epel-release
-  yum:
-    name: epel-release
-- name: Install vconfig 1
-  yum:
-    name: vconfig
+- name: Setting up Vlans
+  pre_tasks:
+    - name: Install  epel-release
+      yum:
+        name: epel-release
+    - name: Install vconfig
+      yum:
+        name: vconfig
+
+  tasks:
+    - name: Create Vlan
+      shell: "vconfig add {{ net }} {{ item }} up"
+      with_sequence: start="{{start}}" end="{{end}}"
+    - name: Activating Vlan
+      shell: "ifconfig {{ net }}.{{ item }} 10.0.{{ item }}.{{ inet }}/24 up"
+      with_sequence: start="{{ start}}" end="{{ end }}"
+
 
 #- name: Install vconfig
 #  shell: yum install vconfig.x86_64
