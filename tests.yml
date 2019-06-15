@@ -2,17 +2,17 @@
 ---
 - name: Test Connection to Hosts
   hosts: all
-  pre_tasks:
-    - name: Generate KEY
-      openssh_keypair:
-        path: /tmp/id_ssh_rsa
-        force: True
-
-    - name: Add KEY to Hosts
-      authorized_key:
-        state: present
-        key: "{{ lookup('file', 'id_rsa.pub') }}"
-        path: /tmp/id_ssh_rsa
+#  pre_tasks:
+#    - name: Generate KEY
+#      openssh_keypair:
+#        path: /tmp/id_ssh_rsa
+#        force: True
+#
+#    - name: Add KEY to Hosts
+#      authorized_key:
+#        state: present
+#        key: "{{ lookup('file', 'id_rsa.pub') }}"
+#        path: /tmp/id_ssh_rsa
 
   tasks:
     - name: Ping the Hosts
