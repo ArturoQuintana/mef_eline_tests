@@ -5,10 +5,15 @@
 
 - name: Create Vlan
   shell: "vconfig add {{ net }} {{ item|int }} up"
+  args:
+    executable: ./
+#
   with_sequence: start="{{start }}" end="{{ end }}"
 
 - name: Activating Vlan
   shell: "ifconfig {{ net }}.{{ item|int }} 10.0.{{ item|int }}.{{ inet|int }}/24 up"
+  args:
+    executable: ./
   with_sequence: start="{{ start }}" end="{{ end }}"
 
 
