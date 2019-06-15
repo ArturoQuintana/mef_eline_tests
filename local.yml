@@ -18,7 +18,7 @@
       when: ansible_distribution == 'Ubuntu'
 
     - name: Run the Roles
-      command: ansible-playbook -i hosts tests.yml
+      command: ansible-playbook -i hosts tests.yml --list-tasks
 
 #    - name: Delete SSHPASS on CentOS
 #      yum:
