@@ -20,7 +20,7 @@
 
     - name: Start Roles
       include_role:
-        name: create_evc
+        name: delete_evc
 
 #  post_tasks:
 #    - name: Delete KEY from Hosts
