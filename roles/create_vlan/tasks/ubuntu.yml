@@ -1,18 +1,14 @@
 ---
-- name: Setting up Vlans
-  hosts: all
-  pre_tasks:
-    - name: Install vconfig
-      apt:
-        name: vlan
+- name: Install vconfig
+  apt:
+    name: vlan
 
-  tasks:
-    - name: Create Vlan
-      shell: "vconfig add {{ net }} {{ item }} up"
-      with_sequence: start="{{start}}" end="{{end}}"
-    - name: Activating Vlan
-      shell: "ifconfig {{ net }}.{{ item }} 10.0.{{ item }}.{{ inet }}/24 up"
-      with_sequence: start="{{ start}}" end="{{ end }}"
+- name: Create Vlan
+  shell: "vconfig add {{ net }} {{ item }} up"
+  with_sequence: start="{{start}}" end="{{end}}"
+- name: Activating Vlan
+  shell: "ifconfig {{ net }}.{{ item }} 10.0.{{ item }}.{{ inet }}/24 up"
+  with_sequence: start="{{ start}}" end="{{ end }}"
 
 #- name: Installing iproute2 module
 #  apt:
