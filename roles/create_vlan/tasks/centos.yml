@@ -1,5 +1,6 @@
 ---
 - name: Setting up Vlans
+  hosts: all
   pre_tasks:
     - name: Install  epel-release
       yum:
@@ -12,6 +13,7 @@
     - name: Create Vlan
       shell: "vconfig add {{ net }} {{ item }} up"
       with_sequence: start="{{start}}" end="{{end}}"
+
     - name: Activating Vlan
       shell: "ifconfig {{ net }}.{{ item }} 10.0.{{ item }}.{{ inet }}/24 up"
       with_sequence: start="{{ start}}" end="{{ end }}"

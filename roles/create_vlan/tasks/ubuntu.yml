@@ -1,5 +1,6 @@
 ---
 - name: Setting up Vlans
+  hosts: all
   pre_tasks:
     - name: Install vconfig
       apt:
