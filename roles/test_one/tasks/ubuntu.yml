@@ -2,7 +2,7 @@
 - name: Installing requests module
   pip:
     name: "pythonping"
-    execute: pip3
+    executable: pip3
 
 - name: Running Create EVC Script
   tasks:
