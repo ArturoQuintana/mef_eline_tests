@@ -8,6 +8,9 @@
 [int_three]
 67.17.206.218
 
+[local]
+127.0.0.1
+
 [centos:children]
 int_one
 int_two
