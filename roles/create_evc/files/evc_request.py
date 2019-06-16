@@ -3,6 +3,9 @@
 import requests
 import os
 import sys
+from roles.create_evc.files.links import ControllerConnection
+
+
 
 
 class Request():
@@ -14,7 +17,11 @@ class Request():
 
     action = ""
 
-    host = "127.0.0.1"
+    # host = "127.0.0.1"
+
+    controller_adr = None
+
+    controller_port = None
 
     file = "circuits.txt"
 
@@ -26,14 +33,17 @@ class Request():
 
     headers = {"Content-Type": "application/json", "cache-control": "no-cache"}
 
-    def __init__(self, host= None, value=None, action=None):
+    def __init__(self, controller_addr=None, controller_port=None,
+                 value=None, action=None):
         """
 
         :param value:
         """
+        self.controller_adr = controller_addr
+        self.controller_port = controller_port
         self.value = value
         self.action = action
-        self.host = host
+        self.url = "http://{}:{}/api/kytos/mef_eline/v2/evc/".format(self.controller_adr, self.controller_port)
 
     def save_circuit_request(self, data=None, mode=None):
         exclude = 'Not Acceptable: This evc already exists.'
@@ -80,7 +90,7 @@ class Request():
         :param data:
         :return:
         """
-        d = {self.host: {self.value: data}}
+        d = {self.interface_id_a: {self.interface_id_z: {self.value: data}}}
 
         return d
 
@@ -90,7 +100,7 @@ class Request():
 
             file = self.read_circuit_request(io)
 
-            file.update({self.host: {self.value: data}})
+            file.update({self.interface_id_a: {self.interface_id_z: {self.value: data}}})
 
             return file
 
@@ -98,7 +108,14 @@ class Request():
 
             file = self.read_circuit_request()
 
-            file.get(self.host).pop(self.value)
+            file.get(self.interface_id_a).get(self.interface_id_z).pop(self.value)
+
+            if not file.keys(self.interface_id_a):
+                file.pop(self.interface_id_a)
+
+            elif not file.get(self.interface_id_a).key(self.interface_id_z):
+                file.get(self.interface_id_a).pop(self.interface_id_z)
+            # elif not dict.get(self.interface_id_a).get(self.interface_id_z).get()
 
             return file
 
@@ -106,17 +123,17 @@ class Request():
 
         pass
 
-    def create_evc(self):
+    def create_evc(self, interface_id_a=None, interface_id_z=None):
         """
 
         :return:
         """
 
         msg_data = dict({"name": self.name,
-                         "uni_a": {"interface_id": self.interface_id_a,
+                         "uni_a": {"interface_id": interface_id_a,
                                    "tag": {"tag_type": 1, "value": int(self.value)}
                                    },
-                         "uni_z": {"interface_id": self.interface_id_z,
+                         "uni_z": {"interface_id": interface_id_z,
                                    "tag": {"tag_type": 1, "value": int(self.value)}
                                    },
                          "dynamic_backup_path": True,
@@ -135,8 +152,12 @@ class Request():
 
         data = self.read_circuit_request()
 
-        if self.host in data and self.value in data.get(self.host):
-            msg_data = self.url + data.get(self.host).get(self.value).get("circuit_id")
+        if self.interface_id_a in data and self.interface_id_z in \
+                data.get(self.interface_id_a) and self.value in \
+                data.get(self.interface_id_a).get(self.interface_id_z):
+
+            msg_data = self.url + data.get(self.interface_id_a)\
+                .get(self.interface_id_z).get(self.value).get("circuit_id")
 
         return msg_data
 
@@ -145,16 +166,34 @@ class Request():
 
         :return:
         """
-        resp = ""
-        data = None
+        links = ControllerConnection(self.controller_adr, self.controller_port)
+        switch_ids = links.getting_ids()
+
+        # resp = ""
+        # data = None
         mode = None
 
-        if self.action == "create_evc":
+        if switch_ids and self.action == "create_evc":
+            index_a = 0
 
-            resp = requests.post(url=self.url, json=self.create_evc(),
-                                headers=self.headers)
+            for interface_id_a in switch_ids[index_a]:
 
-            data = eval(resp.text)
+                index_z = index_a + 1
+
+                for interface_id_z in switch_ids[index_z]:
+
+                    resp = requests.post(url=self.url, json=self.create_evc(interface_id_a, interface_id_z),
+                                         headers=self.headers)
+
+                    data = eval(resp.text)
+
+                    self.interface_id_a = interface_id_a
+                    self.interface_id_z = interface_id_z
+
+                    self.save_circuit_request(data, mode)
+
+                    index_z = index_z + 1
+                index_a = index_a + 1
 
         elif self.action == "delete_evc":
 
@@ -167,16 +206,37 @@ class Request():
                 if resp.text.__contains__("Circuit removed"):
                     data = self.update_circuit_request()
 
-                print(resp)
+                    self.save_circuit_request(data, mode)
 
-        self.save_circuit_request(data, mode)
+                print(resp)
 
 
 if __name__ == "__main__":
 
-    arg_1 = sys.argv[1]
-    arg_2 = sys.argv[2]
-    arg_3 = sys.argv[3]
+    msg = "Error! "
+    try:
 
-    evc_req = Request(host=arg_1, value=arg_2, action=arg_3)
-    evc_req.actions()
+        if sys.argv.__len__() == 5:
+
+            arg_1 = sys.argv[1]
+            arg_2 = sys.argv[2]
+            arg_3 = sys.argv[3]
+            arg_4 = sys.argv[4]
+        else:
+            msg += "Missing Arguments."
+            raise Exception("Error! Missing Arguments.")
+
+        if not (str(sys.argv[2]).isdecimal() and str(sys.argv[3]).isdecimal()):
+            msg += "Argument 2, 4 or both are NOT integers."
+            raise Exception("Error! Argument 2, 4 or both are NOT integers.")
+
+        evc_req = Request(controller_addr=arg_1, controller_port=arg_2, value=arg_3, action=arg_4)
+        evc_req.actions()
+
+    except Exception as e:
+
+        sys.exit(msg)
+
+
+
+

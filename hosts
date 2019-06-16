@@ -19,6 +19,8 @@ int_three
 start = 20
 end = 22
 net = enp6s0
+controller_addr = 67.17.206.252
+controller_port = 8181
 ansible_user = amlight
 ansible_password = wham0Path
 ansible_become = yes
