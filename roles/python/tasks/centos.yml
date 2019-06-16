@@ -36,7 +36,8 @@
   pip:
     name: "pythonping"
     virtualenv: /tmp/mef_eline_python
-    virtualenv_command: /opt/rh/rh-python36/root/usr/bin/pip
+    virtualenv_site_packages: yes
+#    virtualenv_command: /opt/rh/rh-python36/root/usr/bin/pip
 
 #- name: Activate Python 3.6 SCL Bash
 #  command: scl enable rh-python36 bash
