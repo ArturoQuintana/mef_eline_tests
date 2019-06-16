@@ -7,7 +7,7 @@
 
 
 - name: Running Create EVC Script
-  shell: "{{ role_path }}/files/evc_request.py {{ controller_addr }} {{ controller_port }} {{ item }} create_evc"
+  shell: "{{ role_path }}"/files/evc_request.py "{{ controller_addr }}" "{{ controller_port }}" "{{ item }}" create_evc
   args:
     chdir: /tmp/
     executable: /opt/rh/rh-python36/root/usr/bin/python3
