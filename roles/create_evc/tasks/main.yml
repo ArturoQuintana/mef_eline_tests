@@ -1,7 +1,7 @@
 ---
 - name: Copy EVC Scrip
   copy:
-    path: "{{ role_path }}/files/evc_request.py"
+    src: "{{ role_path }}/files/evc_request.py"
     dest: /tmp/evc_request.py
 
 
