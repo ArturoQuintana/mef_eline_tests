@@ -21,7 +21,7 @@
 - name: Installing requests module
   pip:
     name: "requests"
-    executable: pip3
+    executable: /opt/rh/rh-python36/root/usr/bin/pip3
 
 - name: Installing pythonping module
   pip:
