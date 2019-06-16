@@ -47,3 +47,7 @@ inet = 2
 [int_three:vars]
 inet = 3
 
+[local:vars]
+ansible_user = root
+ansible_password = wham0Path
+ansible_port = 22
