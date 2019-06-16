@@ -19,15 +19,18 @@
 
 - name: Create Virtual Enviroment
   pip:
+    name: "python3"
     virtualenv: /tmp/mef_eline_python
     virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
+    virtualenv_site_packages: yes
 
 - name: Installing requests module
   pip:
     name: "requests"
     virtualenv: /tmp/mef_eline_python
+    virtualenv_site_packages: yes
 #    virtualenv_command:
-    executable: /opt/rh/rh-python36/root/usr/bin/pip
+#    executable: /opt/rh/rh-python36/root/usr/bin/pip
 
 - name: Installing pythonping module
   pip:
