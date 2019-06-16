@@ -21,12 +21,12 @@
 - name: Installing requests module
   pip:
     name: "requests"
-    executable: /opt/rh/rh-python36/root/usr/bin/pip3
+    executable: /opt/rh/rh-python36/root/usr/bin/pip
 
 - name: Installing pythonping module
   pip:
     name: "pythonping"
-    executable: pip3
+    executable: /opt/rh/rh-python36/root/usr/bin/pip
 
 #- name: Activate Python 3.6 SCL Bash
 #  command: scl enable rh-python36 bash
