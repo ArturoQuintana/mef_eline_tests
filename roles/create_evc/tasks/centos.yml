@@ -7,9 +7,9 @@
 
 
 - name: Running Create EVC Script
-  shell: role/create_evc/files/evc_request.py {{ controller_addr }} {{ controller_port }} {{ item }} create_evc
+  shell: /opt/rh/rh-python36/root/usr/bin/python3 role/create_evc/files/evc_request.py {{ controller_addr }} {{ controller_port }} {{ item }} create_evc
   args:
     chdir: /tmp/
-    executable: /opt/rh/rh-python36/root/usr/bin/python3
+#    executable: /opt/rh/rh-python36/root/usr/bin/python3
     creates: circuits.txt
   with_sequence: start="{{ start}}" end="{{ end }}"
