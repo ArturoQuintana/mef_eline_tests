@@ -19,20 +19,20 @@
 
 - name: Create Virtual Enviroment
   pip:
-    virtualenv: mef_eline_python
+    virtualenv: /tmp/mef_eline_python
     virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
 
 - name: Installing requests module
   pip:
     name: "requests"
-    virtualenv: mef_eline_python
+    virtualenv: /tmp/mef_eline_python
 #    virtualenv_command:
     executable: /opt/rh/rh-python36/root/usr/bin/pip
 
 - name: Installing pythonping module
   pip:
     name: "pythonping"
-    virtualenv: mef_eline_python
+    virtualenv: /tmp/mef_eline_python
     virtualenv_command: /opt/rh/rh-python36/root/usr/bin/pip
 
 #- name: Activate Python 3.6 SCL Bash
