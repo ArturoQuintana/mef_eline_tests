@@ -22,33 +22,37 @@
 #  args:
 #    executable: /bin/bash
 
-- name: install needed network manager libs
-  package:
-    name:
-      - NetworkManager-glib
-      - nm-connection-editor
-      - libsemanage-python
-      - policycoreutils-python
-    state: present
+- name: Install vconfig (without 'args').
+  command: yum install vconfig.x86_64
 
-- name: Add VxLan
-  nmcli:
-    type: vlan
-    comm_name: "{{ net }}.{{ item|int }}"
-    ifname: "{{ net }}"
-    vlan_id: "{{item}}"
+
+#- name: install needed network manager libs
+#  package:
+#    name:
+#      - NetworkManager-glib
+#      - nm-connection-editor
+#      - libsemanage-python
+#      - policycoreutils-python
+#    state: present
+#
+#- name: Add VxLan
+#  nmcli:
+#    type: vlan
+#    comm_name: "{{ net }}.{{ item|int }}"
+#    ifname: "{{ net }}"
+#    vlan_id: "{{item}}"
+##    ip4: "10.0.{{ item }}.{{ inet }}/24"
+#    state: present
+#  with_sequence: start="{{start}}" end="{{end}}"
+#
+#- name: Optionally, at the same time specify IPv6 addresses for the device
+#  nmcli:
+#    conn_name: "{{ net }}.{{ item|int }}"
+#    ifname: "{{ net }}"
+#    type: ethernet
 #    ip4: "10.0.{{ item }}.{{ inet }}/24"
-    state: present
-  with_sequence: start="{{start}}" end="{{end}}"
-
-- name: Optionally, at the same time specify IPv6 addresses for the device
-  nmcli:
-    conn_name: "{{ net }}.{{ item|int }}"
-    ifname: "{{ net }}"
-    type: ethernet
-    ip4: "10.0.{{ item }}.{{ inet }}/24"
-    state: present
-  with_sequence: start="{{start}}" end="{{end}}"
+#    state: present
+#  with_sequence: start="{{start}}" end="{{end}}"
 
 #- name: Create and Activate Vlan
 #  raw: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
