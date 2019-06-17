@@ -18,7 +18,7 @@
     name: "python-pip"
 
 - name: Upgrade pip
-  command: pip install --upgrade pip
+  command: /opt/rh/rh-python36/root/usr/bin/pip  install --upgrade pip
 
 - name: Install Virtualenv
   pip:
