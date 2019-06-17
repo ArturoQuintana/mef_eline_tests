@@ -27,11 +27,11 @@
 
 - name: Create Vlan
   command: vconfig add "{{net}} {{item}}" up
-  with_sequence: start="{{start}}" end=""{{end}}"
+  with_sequence: start="{{start}}" end="{{end}}"
 
 - name: Config Vlan
   command: ifconfig "{{net}}.{{item}}" 10.0."{{item}}.{{inet}}"/24 up
-  with_sequence: start="{{start}}" end=""{{end}}"
+  with_sequence: start="{{start}}" end="{{end}}"
 
 #- name: install needed network manager libs
 #  package:
