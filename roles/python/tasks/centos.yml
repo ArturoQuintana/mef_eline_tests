@@ -31,6 +31,7 @@
   pip:
     name: "python"
     state: present
+    version: 3
     virtualenv: /tmp/mef_eline_python
     virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
 #    virtualenv_python: python3
