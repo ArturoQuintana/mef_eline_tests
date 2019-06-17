@@ -36,6 +36,11 @@
 #    virtualenv_python: python3
 #    virtualenv_site_packages: yes
 
+- name: Install pip3
+  pip:
+    name: "pip-3"
+    virtualenv: /tmp/mef_eline_python
+    virtualenv_site_packages: yes
 
 - name: Installing requests module
   pip:
