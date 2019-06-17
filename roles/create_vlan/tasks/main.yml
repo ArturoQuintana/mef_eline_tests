@@ -1,15 +1,4 @@
 ---
-#- name: Create and Activate Vlan
-#  shell: ip link add link "{{ net }}" name "{{ net }}"."{{ item|int }}" action vlan id "{{ item|int }}"
-#  with_sequence: start="{{ start }}" end="{{ end }}"
-#
-#- name: Setting Vlan
-#  command: ip addr add 10.0."{{ item|int }}"."{{ inet }}"/24 brd 10.0."{{ item|int }}".255 dev "{{ net }}.{{ item|int }}"
-#  with_sequence: start="{{ start }}" end="{{ end }}"
-#
-#- name: Activating Vlan
-#  shell: ip link set dev "{{ net }}.{{ item|int }}" up
-#  with_sequence: start="{{ start }}" end="{{ end }}"
 
 - include_tasks: centos.yml
   when: ansible_distribution == 'CentOS'
