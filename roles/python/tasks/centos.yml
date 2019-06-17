@@ -29,7 +29,7 @@
 
 - name: Create Virtual Enviroment
   pip:
-    name: "python3"
+    name: "python"
     state: present
     virtualenv: /tmp/mef_eline_python
     virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
