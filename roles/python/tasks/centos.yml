@@ -34,8 +34,8 @@
   pip:
     name: "python"
     state: present
-    version: 3.6
-    virtualenv_python: python3.6
+#    version: 3.6
+#    virtualenv_python: python3.6
     virtualenv: /tmp/mef_eline_python
     virtualenv_command: pip install --upgrade pip
 #    virtualenv_python: python3
