@@ -78,7 +78,7 @@ class Request():
     interface_id_a = "00:00:6c:ec:5a:08:5f:75:10"
     interface_id_z = "00:00:6c:ec:5a:09:be:62:10"
 
-    headers = {"Content-Type": "application/json", "cache-control": "no-cache"}
+    HEADERS = {"Content-Type": "application/json", "cache-control": "no-cache"}
 
     def __init__(self, controller_addr=None, controller_port=None,
                  value=None, action=None):
@@ -235,7 +235,7 @@ class Request():
                     resp = requests.post(url=self.url,
                                          json=self.create_evc(self.interface_id_a,
                                                               self.interface_id_z),
-                                         headers=self.headers)
+                                         headers=self.HEADERS)
 
                     data = eval(resp.text)
 
