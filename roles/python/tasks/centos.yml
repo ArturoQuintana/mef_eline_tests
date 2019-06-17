@@ -34,7 +34,7 @@
     version: 3.6
     virtualenv_python: python3.6
     virtualenv: /tmp/mef_eline_python
-#    virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
+    virtualenv_command: pip install --upgrade pip
 #    virtualenv_python: python3
 #    virtualenv_site_packages: yes
 
