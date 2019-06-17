@@ -22,19 +22,33 @@
 #  args:
 #    executable: /bin/bash
 
-- name: Create and Activate Vlan
-  raw: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
-  args:
-    executable: /bin/bash
-  with_sequence: start="{{ start }}" end="{{ end }}"
+- name: Create Vlan
+  nxos_vlan:
+    vlan_id: "{{item}}"
+    state: present
+    name: "{{ net }}.{{ item|int }}"
+  with_sequence: start="{{start}}" end="{{end}}"
 
-- name: Setting Vlan
-  shell: "ip addr add 10.0.{{ item }}.{{ inet }}/24 brd 10.0.{{ item|int }}.255 dev {{ net }}.{{ item }}"
-  args:
-    executable: /bin/bash
+- name: Add interfaces to VLAN
+  nxos_vlan:
+    vlan_id: "{{item}}"
+    interfaces:
+      - "10.0.{{ item }}.{{ inet }}/24"
+  with_sequence: start="{{start}}" end="{{end}}"
 
-  with_sequence: start="{{ start }}" end="{{ end }}"
-
-- name: Activating Vlan
-  raw: "ip link set dev {{ net }}.{{ item }} up"
-  with_sequence: start="{{ start }}" end="{{ end }}"
+#- name: Create and Activate Vlan
+#  raw: "ip link add link {{ net }} name {{ net }}.{{ item|int }} action vlan id {{ item|int }}"
+#  args:
+#    executable: /bin/bash
+#  with_sequence: start="{{ start }}" end="{{ end }}"
+#
+#- name: Setting Vlan
+#  shell: "ip addr add 10.0.{{ item }}.{{ inet }}/24 brd 10.0.{{ item|int }}.255 dev {{ net }}.{{ item }}"
+#  args:
+#    executable: /bin/bash
+#
+#  with_sequence: start="{{ start }}" end="{{ end }}"
+#
+#- name: Activating Vlan
+#  raw: "ip link set dev {{ net }}.{{ item }} up"
+#  with_sequence: start="{{ start }}" end="{{ end }}"
