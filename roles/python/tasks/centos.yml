@@ -23,12 +23,12 @@
 - name: Install Virtualenv
   pip:
     name: "virtualenv"
-    executable: /opt/rh/rh-python36/root/usr/bin/pip3
+#    executable: /opt/rh/rh-python36/root/usr/bin/pip3
 
 - name: Install setuptools
   pip:
     name: "setuptools"
-    executable: /opt/rh/rh-python36/root/usr/bin/pip3
+#    executable: /opt/rh/rh-python36/root/usr/bin/pip3
 
 - name: Create Virtual Enviroment
   pip:
