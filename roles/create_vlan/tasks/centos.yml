@@ -1,7 +1,7 @@
 ---
-- name: Install vconfig
-  yum:
-    name: vconfig
+#- name: Install vconfig
+#  yum:
+#    name: vconfig
 
 #- name: Create Vlan
 #  command: "./vconfig add {{ net }} {{ item|int }} up"
