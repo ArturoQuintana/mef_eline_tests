@@ -30,36 +30,36 @@
     name: "setuptools"
 #    executable: /opt/rh/rh-python36/root/usr/bin/pip3
 
-- name: Create Virtual Enviroment
-  pip:
-    name: "python"
-    state: present
-#    version: 3.6
-#    virtualenv_python: python3.6
-    virtualenv: /tmp/mef_eline_python
-    virtualenv_command: pip install --upgrade pip
-#    virtualenv_python: python3
-#    virtualenv_site_packages: yes
+#- name: Create Virtual Enviroment
+#  pip:
+#    name: "python"
+#    state: present
+##    version: 3.6
+##    virtualenv_python: python3.6
+#    virtualenv: /tmp/mef_eline_python
+#    virtualenv_command: pip install --upgrade pip
+##    virtualenv_python: python3
+##    virtualenv_site_packages: yes
 
-- name: Install pip3
-  pip:
-    name: "pip-3"
-    virtualenv: /tmp/mef_eline_python
-    virtualenv_site_packages: yes
+#- name: Install pip3
+#  pip:
+#    name: "pip-3"
+#    virtualenv: /tmp/mef_eline_python
+#    virtualenv_site_packages: yes
 
 - name: Installing requests module
   pip:
     name: "requests"
-    virtualenv: /tmp/mef_eline_python
-    virtualenv_site_packages: yes
+#    virtualenv: /tmp/mef_eline_python
+#    virtualenv_site_packages: yes
 #    virtualenv_command:
 #    executable: /opt/rh/rh-python36/root/usr/bin/pip
 
 - name: Installing pythonping module
   pip:
     name: "pythonping"
-    virtualenv: /tmp/mef_eline_python
-    virtualenv_site_packages: yes
+#    virtualenv: /tmp/mef_eline_python
+#    virtualenv_site_packages: yes
 #    virtualenv_command: /opt/rh/rh-python36/root/usr/bin/pip
 
 #- name: Activate Python 3.6 SCL Bash
