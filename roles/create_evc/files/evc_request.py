@@ -137,6 +137,7 @@ class Request():
         :param data:
         :return:
         """
+
         d = {self.interface_id_a: {self.interface_id_z: {self.value: data}}}
 
         return d
@@ -199,9 +200,9 @@ class Request():
 
         data = self.read_circuit_request()
 
-        if self.interface_id_a in data and self.interface_id_z in \
-                data.get(self.interface_id_a) and self.value in \
-                data.get(self.interface_id_a).get(self.interface_id_z):
+        if data and self.interface_id_a in data.keys() and self.interface_id_z in \
+                data.get(self.interface_id_a).keys() and self.value in \
+                data.get(self.interface_id_a).get(self.interface_id_z).keys():
 
             msg_data = self.url + data.get(self.interface_id_a)\
                 .get(self.interface_id_z).get(self.value).get("circuit_id")
@@ -222,6 +223,8 @@ class Request():
 
         if switch_ids and self.action == "create_evc":
             index_a = 0
+
+            mode = True
 
             while switch_ids.__len__() > index_a:
 
@@ -246,23 +249,37 @@ class Request():
 
         elif self.action == "delete_evc":
 
-            rem_evc = self.delete_evc()
+            index_a = 0
+            rem_evc = None
 
-            if rem_evc:
+            while switch_ids.__len__() > index_a:
 
-                resp = requests.delete(rem_evc)
+                index_z = index_a + 1
 
-                if resp.text.__contains__("Circuit removed"):
-                    data = self.update_circuit_request()
+                while switch_ids.__len__() > index_z:
+                    self.interface_id_a = switch_ids.get(index_a)
+                    self.interface_id_z = switch_ids.get(index_z)
 
-                    self.save_circuit_request(data, mode)
+                    rem_evc = self.delete_evc()
 
-                print(resp)
+                    if rem_evc:
+
+                        resp = requests.delete(rem_evc)
+
+                        if resp.text.__contains__("Circuit removed"):
+                            data = self.update_circuit_request()
+
+                            self.save_circuit_request(data, mode)
+
+                        print(resp)
+
+                    index_z = index_z + 1
+                index_a = index_a + 1
 
 
 if __name__ == "__main__":
 
-    msg = "Error! "
+    msg = None
     try:
 
         if sys.argv.__len__() == 5:
@@ -272,11 +289,11 @@ if __name__ == "__main__":
             arg_3 = sys.argv[3]
             arg_4 = sys.argv[4]
         else:
-            msg += "Missing Arguments."
+            msg = "Error! Missing Arguments."
             raise Exception("Error! Missing Arguments.")
 
         if not (str(sys.argv[2]).isdecimal() and str(sys.argv[3]).isdecimal()):
-            msg += "Argument 2, 4 or both are NOT integers."
+            msg = "Error! Argument 2, 4 or both are NOT integers."
             raise Exception("Error! Argument 2, 4 or both are NOT integers.")
 
         evc_req = Request(controller_addr=arg_1, controller_port=arg_2, value=arg_3, action=arg_4)
