@@ -26,11 +26,11 @@
   command: yum install vconfig.x86_64
 
 - name: Create Vlan
-  command: vconfig add "{{net}} {{item}}" up
+  command: vconfig add "{{net}}" "{{item|int}}" up
   with_sequence: start="{{start}}" end="{{end}}"
 
 - name: Config Vlan
-  command: ifconfig "{{net}}.{{item}}" 10.0."{{item}}.{{inet}}"/24 up
+  command: ifconfig "{{net}}.{{item|int}}" 10.0."{{item|int}}.{{inet|int}}"/24 up
   with_sequence: start="{{start}}" end="{{end}}"
 
 #- name: install needed network manager libs
