@@ -1,0 +1,6 @@
+---
+- name: Test Tasks for Throubleshooting Purpose
+  hosts: all
+  tasks:
+    - name:
+      command: yum install vconfig.x86_64
