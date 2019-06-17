@@ -34,7 +34,6 @@
     version: 3
     virtualenv_python: python3.6
     virtualenv: /tmp/mef_eline_python
-    executable: /opt/rh/rh-python36/root/usr/bin/pip3
 #    virtualenv_command: /opt/rh/rh-python36/root/usr/bin/python3 -m venv
 #    virtualenv_python: python3
 #    virtualenv_site_packages: yes
