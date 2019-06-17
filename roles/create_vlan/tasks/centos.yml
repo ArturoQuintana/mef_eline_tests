@@ -22,18 +22,32 @@
 #  args:
 #    executable: /bin/bash
 
-- name: Create Vlan
-  nxos_vlan:
-    vlan_id: "{{item}}"
+- name: install needed network manager libs
+  package:
+    name:
+      - NetworkManager-glib
+      - nm-connection-editor
+      - libsemanage-python
+      - policycoreutils-python
     state: present
-    name: "{{ net }}.{{ item|int }}"
+
+- name: Add VxLan
+  nmcli:
+    type: vlan
+    comm_name: "{{ net }}.{{ item|int }}"
+    ifname: "{{ net }}"
+    vlan_id: "{{item}}"
+#    ip4: "10.0.{{ item }}.{{ inet }}/24"
+    state: present
   with_sequence: start="{{start}}" end="{{end}}"
 
-- name: Add interfaces to VLAN
-  nxos_vlan:
-    vlan_id: "{{item}}"
-    interfaces:
-      - "10.0.{{ item }}.{{ inet }}/24"
+- name: Optionally, at the same time specify IPv6 addresses for the device
+  nmcli:
+    conn_name: "{{ net }}.{{ item|int }}"
+    ifname: "{{ net }}"
+    type: ethernet
+    ip4: "10.0.{{ item }}.{{ inet }}/24"
+    state: present
   with_sequence: start="{{start}}" end="{{end}}"
 
 #- name: Create and Activate Vlan
