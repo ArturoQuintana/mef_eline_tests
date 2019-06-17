@@ -163,7 +163,6 @@ class Request():
 
             elif not file.get(self.interface_id_a).key(self.interface_id_z):
                 file.get(self.interface_id_a).pop(self.interface_id_z)
-            # elif not dict.get(self.interface_id_a).get(self.interface_id_z).get()
 
             return file
 
@@ -217,8 +216,6 @@ class Request():
         links = ControllerConnection(self.controller_adr, self.controller_port)
         switch_ids = links.getting_ids()
 
-        # resp = ""
-        # data = None
         mode = None
 
         if switch_ids and self.action == "create_evc":

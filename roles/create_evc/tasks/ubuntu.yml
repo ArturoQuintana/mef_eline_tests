@@ -1,10 +1,4 @@
 ---
-#- name: Installing requests module
-#  pip:
-#    name: "requests"
-#    executable: pip3
-
-
 - name: Running Create EVC Script
   shell: role/create_evc/files/evc_request.py {{ controller_addr }} {{ controller_port }} {{ item }} create_evc
   args:
