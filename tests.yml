@@ -2,17 +2,17 @@
 ---
 - name: Test Connection to Hosts
   hosts: all
-#  pre_tasks:
-#    - name: Generate KEY
-#      openssh_keypair:
-#        path: /tmp/id_ssh_rsa
-#        force: True
-#
-#    - name: Add KEY to Hosts
-#      authorized_key:
-#        state: present
-#        key: "{{ lookup('file', 'id_rsa.pub') }}"
-#        path: /tmp/id_ssh_rsa
+  pre_tasks:
+    - name: Generate KEY
+      openssh_keypair:
+        path: /tmp/id_ssh_rsa
+        force: True
+
+    - name: Add KEY to Hosts
+      authorized_key:
+        state: present
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+        path: /tmp/id_ssh_rsa
 
   tasks:
     - name: Ping the Hosts
@@ -21,13 +21,13 @@
 - name: Create VLan
   hosts: all
   tasks:
-#    - name: Start Role create_vlan
-#      include_role:
-#        name: python
-#
-#    - name: Start Role create_vlan
-#      include_role:
-#        name: create_vlan
+    - name: Start Role create_vlan
+      include_role:
+        name: python
+
+    - name: Start Role create_vlan
+      include_role:
+        name: create_vlan
 
 - name: Start Role create_evc
   hosts: local
@@ -39,35 +39,35 @@
 - name: Start Test_One
   hosts: all
   tasks:
-#    - name: Start Role test_one
-#      include_role:
-#        name: test_one
+    - name: Start Role test_one
+      include_role:
+        name: test_one
 
 - name: Delete EVCs
   hosts: local
   tasks:
-#    - name: Start Role delete_evc
-#      include_role:
-#        name: delete_evc
+    - name: Start Role delete_evc
+      include_role:
+        name: delete_evc
 
 - name: Delete VLan
   hosts: all
   tasks:
-#    - name: Start Role delete_vlan
-#      include_role:
-#        name: delete_vlan
-#
-#    - name: Start Role cleaning
-#      include_role:
-#        name: cleaning
+    - name: Start Role delete_vlan
+      include_role:
+        name: delete_vlan
+
+    - name: Start Role cleaning
+      include_role:
+        name: cleaning
 - name: Delete Keys
   hosts: all
   tasks:
-#    - name: Delete KEY from Hosts
-#      authorized_key:
-#        state: absent
-#        key: "{{ lookup('file', 'id_rsa.pub') }}"
-#        path: /tmp/id_ssh_rsa
+    - name: Delete KEY from Hosts
+      authorized_key:
+        state: absent
+        key: "{{ lookup('file', 'id_rsa.pub') }}"
+        path: /tmp/id_ssh_rsa
 
 
 #
