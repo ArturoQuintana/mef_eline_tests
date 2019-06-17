@@ -1,7 +1,8 @@
 ---
 - name: Running Create EVC Script
-  script: "roles/create_evc/files/evc_request.py inventory_hostname {{ item }} create_evc"
-  args:
-    chdir: /tmp
-    executable: /opt/rh/rh-python36/root/usr/bin/python3
-  with_sequence: start="{{ start }}" end="{{ end }}"
+  shell: /opt/rh/rh-python36/root/usr/bin/python3 /tmp/evc_request.py {{ controller_addr }} {{ controller_port }} {{ item }} delete_evc
+    args:
+      chdir: /tmp/
+      #    executable: /opt/rh/rh-python36/root/usr/bin/python3
+      deletes: circuits.txt
+    with_sequence: start="{{ start}}" end="{{ end }}"

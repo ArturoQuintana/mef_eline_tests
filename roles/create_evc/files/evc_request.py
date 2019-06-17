@@ -35,17 +35,21 @@ class ControllerConnection():
 
             json_data = requests.get(addr_inf).json()
 
-            switch_ids = ""
+            switch_ids = None
+            index = 0
 
             for switch in dict(json_data['switches']).keys():
 
                 swt_id_port = 10
 
-                switch_ids += "{}:{}\n".format(switch, swt_id_port)
+                if not switch_ids:
+                    switch_ids = {index: '{}:{}'.format(switch, swt_id_port)}
+                else:
+                    switch_ids.update({index: '{}:{}'.format(switch, swt_id_port)})
 
-            list_ids = list(switch_ids)
+                index += 1
 
-            return list_ids
+            return switch_ids
 
         except Exception as e:
 
@@ -219,19 +223,21 @@ class Request():
         if switch_ids and self.action == "create_evc":
             index_a = 0
 
-            for interface_id_a in switch_ids[index_a]:
+            while switch_ids.__len__() > index_a:
 
                 index_z = index_a + 1
 
-                for interface_id_z in switch_ids[index_z]:
+                while switch_ids.__len__() > index_z:
 
-                    resp = requests.post(url=self.url, json=self.create_evc(interface_id_a, interface_id_z),
+                    self.interface_id_a = switch_ids.get(index_a)
+                    self.interface_id_z = switch_ids.get(index_z)
+
+                    resp = requests.post(url=self.url,
+                                         json=self.create_evc(self.interface_id_a,
+                                                              self.interface_id_z),
                                          headers=self.headers)
 
                     data = eval(resp.text)
-
-                    self.interface_id_a = interface_id_a
-                    self.interface_id_z = interface_id_z
 
                     self.save_circuit_request(data, mode)
 
