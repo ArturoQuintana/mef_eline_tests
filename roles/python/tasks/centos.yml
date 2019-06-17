@@ -17,6 +17,9 @@
   yum:
     name: "python-pip"
 
+- name: Upgrade pip
+  command: pip install --upgrade pip
+
 - name: Install Virtualenv
   pip:
     name: "virtualenv"
